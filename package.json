@@ -1,0 +1,32 @@
+{
+  "name": "autoico",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+  },
+  "engines": {
+    "npm": "3.5.2",
+    "node": "8.10.0"
+  },
+  "author": "Cristian Ruz",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.3",
+    "is-empty": "^1.2.0",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.4.3",
+    "validator": "^11.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
