@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './register.css';
+import './auth.css';
 
 export default class Register extends Component {
   constructor(props) {
@@ -23,9 +23,16 @@ export default class Register extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
+    const user = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2
+
+    };
     fetch('users/register', {
       method: 'POST',
-      body: JSON.stringify(this.state),
+      body: JSON.stringify(user),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -67,17 +74,17 @@ export default class Register extends Component {
                 </div>
                 <hr />
                 <div className="form-label-group">
-                  <input type="password" name="password" id="inputPassword" className="form-control" placeholder="Password" required onChange={this.handleInputChange} />
+                  <input type="password" name="password" id="inputPassword" className="form-control" placeholder="Password" required onChange={this.handleInputChange} minLength="6" />
                   <label htmlFor="inputPassword">Password</label>
                 </div>
                 <div className="form-label-group">
-                  <input type="password" name="password2" id="inputConfirmPassword" className="form-control" placeholder="Password" required onChange={this.handleInputChange}/>
+                  <input type="password" name="password2" id="inputConfirmPassword" className="form-control" placeholder="Password" required onChange={this.handleInputChange} minLength="6" />
                   <label htmlFor="inputConfirmPassword">Confirm password</label>
                 </div>
                 <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
 
                 <hr className="my-4" />
-                <h3>{this.state.message}</h3>
+                <h3 style={{textAlign:'center'}}>{this.state.message}</h3>
                 
               </form>
             </div>

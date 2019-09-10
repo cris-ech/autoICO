@@ -13,7 +13,7 @@ export default class Header extends Component {
 
 
   render() {
-    if(window.location.pathname==='/register'){
+    if(window.location.pathname==='/register'|| window.location.pathname==='/login'){
       return <div style={{paddingBottom: '67px'}}></div>;
     }
     return (
@@ -25,7 +25,7 @@ export default class Header extends Component {
           <p>{this.state.hidden}</p>
           <h2 className="masthead-subheading mb-0">Sin dificultades, Sin programacion</h2>
           <h3>AUTOICO</h3>
-          <a href="#" className="btn btn-primary btn-xl rounded-pill mt-5">Pruebalo</a>
+          <a href="register" className="btn btn-primary btn-xl rounded-pill mt-5">Pruebalo</a>
         </div>
       </div>
       {/*

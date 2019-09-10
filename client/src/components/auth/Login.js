@@ -43,26 +43,36 @@ export default class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <h1>Login Below!</h1>
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter email"
-          value={this.state.email}
-          onChange={this.handleInputChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter password"
-          value={this.state.password}
-          onChange={this.handleInputChange}
-          required
-        />
-        <input type="submit" value="Submit"/>
-      </form>
+      <div className="section login-container">
+      <div className="row">
+        <div className="col-lg-5 col-xl-5 col-md-6 col-sm-7 col-xs-8 mx-auto">
+          <div className="card card-signin flex-row my-5">
+            
+            <div className="card-body">
+              <h5 className="card-title text-center">Login</h5>
+              <form className="form-signin" onSubmit={this.onSubmit}>
+                <div className="form-label-group">
+                  <input type="email" name="email" id="inputEmail" className="form-control" placeholder="Email address" required onChange={this.handleInputChange} />
+                  <label htmlFor="inputEmail">Email address</label>
+                </div>
+                <hr />
+                <div className="form-label-group">
+                  <input type="password" name="password" id="inputPassword" className="form-control" placeholder="Password" required onChange={this.handleInputChange} />
+                  <label htmlFor="inputPassword">Password</label>
+                </div>
+                <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+
+                <hr className="my-4" />
+                <h3>{this.state.message}</h3>
+                
+              </form>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
     );
   }
 }
