@@ -9,7 +9,7 @@ import Navbar from './components/navbar/Navbar';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Register from './components/auth/Register';
-
+import Project from './components/project/Project';
 
 class App extends Component {
   render() {
@@ -27,6 +27,7 @@ class App extends Component {
           <Route path="/secret" component={withAuth(Secret)} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/project" component={Project} />
         </Switch>
         
        

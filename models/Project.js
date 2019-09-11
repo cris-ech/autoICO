@@ -1,11 +1,16 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const User = mongoose.model('User');
+//const userSchema = require('./User');
+
 
 
 // Create Schema
 const ProjectSchema = new Schema({
   name: {
+    type: String,
+    required: true
+  },
+  acronym: {
     type: String,
     required: true
   },
@@ -17,7 +22,14 @@ const ProjectSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  user: { type: Schema.ObjectId, ref: "User" }
+  state: {
+    type: String,
+    required: true
+  },
+  user: { 
+    type: Schema.Types.ObjectId,
+    ref: "User" 
+  }
 
 });
 

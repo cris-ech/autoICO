@@ -8,6 +8,7 @@ require('dotenv').config();
 
 
 const users = require("./routes/users");
+const projects = require("./routes/projects");
 //const User = require('./models/User');
 const withAuth = require('./middleware');
 
@@ -39,6 +40,7 @@ mongoose.connect(mongoDB, {useNewUrlParser: true}, function(err) {
 
 // Routes
 app.use("/users", users);
+app.use("/projects", projects);
 
 app.get('/checkToken', withAuth, function(req, res) {
   res.sendStatus(200);

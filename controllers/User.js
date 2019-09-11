@@ -39,7 +39,7 @@ exports.UserRegister = function (req, res) {
           newUser.password = hash;
           newUser
             .save()
-            .then(user => res.json(user))
+            .then(res.sendStatus(200))
             .catch(err => console.log(err));
         });
       });
@@ -115,8 +115,8 @@ exports.UserLogout = function (req, res) {
     } else {
       req.email = decoded.email;
       //console.log(decoded);
-      res.status(200);
-      res.clearCookie('token',{httpOnly: true}).send();
+     //res.status(200);
+      res.clearCookie('token',{httpOnly: true}).sendStatus(200);
     }
   });
   };

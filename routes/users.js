@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const withAuth = require('../middleware');
 
 //Load controllers
 const UserController = require('../controllers/User');
@@ -17,7 +18,7 @@ router.post("/login", UserController.UserLogin);
 // @route POST users/logout
 // @desc Logout an user and remove JWT from cookies
 // @access Public
-router.get("/logout", UserController.UserLogout);
+router.get("/logout",UserController.UserLogout);
   
 
 
