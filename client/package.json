@@ -15,7 +15,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "server": "node server.js",
-    "server-dev": "nodemon server.js"
+    "server-dev": "nodemon server.js",
+    "dev":"(cd .. && npm run start) && npm run start"
   },
   "proxy": "http://localhost:8080",
   "devDependencies": {

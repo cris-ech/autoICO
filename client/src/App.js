@@ -14,19 +14,25 @@ import Register from './components/auth/Register';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="page-container">
         <body>
+        <div>
         <Navbar></Navbar>
         <Header></Header>
         
-
+        
+        <div className="content-wrap">
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/secret" component={withAuth(Secret)} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
         </Switch>
+        
+       
+        </div>
         <Footer></Footer>
+        </div>
         </body>
       </div>
       

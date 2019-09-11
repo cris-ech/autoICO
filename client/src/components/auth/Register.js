@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import './auth.css';
 
 export default class Register extends Component {
@@ -92,7 +93,7 @@ export default class Register extends Component {
           
         </div>
       </div>
-      
+     
     </div>
     
     );

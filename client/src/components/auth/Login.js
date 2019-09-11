@@ -60,7 +60,7 @@ export default class Login extends Component {
                   <input type="password" name="password" id="inputPassword" className="form-control" placeholder="Password" required onChange={this.handleInputChange} />
                   <label htmlFor="inputPassword">Password</label>
                 </div>
-                <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+                <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
 
                 <hr className="my-4" />
                 <h3>{this.state.message}</h3>

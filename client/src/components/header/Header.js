@@ -34,6 +34,7 @@ export default class Header extends Component {
       <div className="bg-circle-3 bg-circle" />
       <div className="bg-circle-4 bg-circle" />*/}
     </header>
+    
     );
   }
 }
