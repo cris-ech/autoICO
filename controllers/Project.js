@@ -9,6 +9,43 @@ const User = require("../models/User");
 
 const withAuth = require('../middleware');
 
+//Function create basic structure of the project
+function createProjectStructure (userName, projectName){
+  
+  const folder = "./projects/" + userName + "/" ; 
+  const command = "cp -r ./preICO " + folder; //Copy
+  const command2 = "mv preICO " + projectName; //Rename
+
+  exec(command, (error, stdout, stderr) => {
+    if (error) {
+      //res.send(error);
+      return console.error(`exec error: ${error}`);
+    }
+    //res.write('Estructura creada ');
+    console.log('hecho');
+    console.log(`stdout: ${stdout}`);
+    console.log(`stderr: ${stderr}`);
+    const options = {cwd: folder };
+    exec(command2, options,(error, stdout, stderr) => {
+      if (error) {
+        //res.send(error);
+        return console.error(`exec error: ${error}`);
+      }
+      //res.write('Nombre cambiado ');
+      console.log('hecho');
+      console.log(`stdout: ${stdout}`);
+      console.log(`stderr: ${stderr}`);
+      //res.end();
+      return true;
+    })
+  })
+
+};
+
+
+
+
+
 
 exports.NewProject =  function (req, res) {
 
@@ -43,8 +80,22 @@ exports.NewProject =  function (req, res) {
           });
           console.log('antes de guardar');
           console.log(newProject);
+          
+
           newProject.save()
-          .then(res.status(200).send('OK'))
+          .then(function () {
+            //add the project to the user
+            User.findByIdAndUpdate(projectUser.id, 
+              {"$push": {"projects": newProject.id}},
+              function (err, raw) {
+              if (err) return handleError(err);
+              console.log('The raw response from Mongo was ', raw); })
+            createProjectStructure(projectUser.name, newProject.name);
+
+            //all the process OK
+            
+
+            res.status(200).send('OK')})
           .catch(err => {
             console.log(err)
             res.status(400).send();

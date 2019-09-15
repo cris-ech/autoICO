@@ -1,6 +1,8 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const fs = require('fs-extra');
 require('dotenv').config();
+
 
 
 // Load input validation
@@ -9,6 +11,21 @@ const validateLoginInput = require("../validation/login");
 
 // Load User model
 const User = require("../models/User");
+
+
+//Function create folder for an user
+
+function createUserFolder (userName){
+  
+  const folder = "./projects/" + userName ; 
+  fs.mkdirp(folder, err => {
+    if (err){ 
+      return console.error(err) }
+    console.log('success!');
+    return true;
+  })
+
+};
 
 
 //Controller for user register
@@ -39,7 +56,10 @@ exports.UserRegister = function (req, res) {
           newUser.password = hash;
           newUser
             .save()
-            .then(res.sendStatus(200))
+            .then( () => {
+              createUserFolder(newUser.name) //ADD CONTROL ERROR HERE
+              res.sendStatus(200)}
+              )
             .catch(err => console.log(err));
         });
       });

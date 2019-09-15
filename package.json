@@ -22,9 +22,11 @@
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.16.3",
+    "fs-extra": "^8.1.0",
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.4.3",
+    "truffle": "^5.0.5",
     "validator": "^11.1.0"
   },
   "devDependencies": {
