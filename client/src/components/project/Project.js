@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FormProject from './formProject';
 
 import '../auth/auth.css';
 
@@ -9,7 +10,14 @@ export default class Project extends Component {
       name: "",
       acronym: "",
       description: "",
-      message: ""
+      message: "",
+      type: "",
+      visibility: "hidden",
+      decimals: 1,
+      cap: 1,
+      wallet : "",
+      t_init: "",
+      t_end: ""
 
     };
   }
@@ -19,7 +27,7 @@ export default class Project extends Component {
     this.setState({
       [name]: value
     });
-  }
+  };
 
   onSubmit = (event) => {
     event.preventDefault();
@@ -56,39 +64,101 @@ export default class Project extends Component {
 
   render() {
     return (
-      <div className="section login-container">
-      <div className="row">
-        <div className="col-lg-5 col-xl-5 col-md-6 col-sm-7 col-xs-8 mx-auto">
-          <div className="card card-signin flex-row my-5">
-            
-            <div className="card-body">
-              <h5 className="card-title text-center">New Project</h5>
-              <form className="form-signin" onSubmit={this.onSubmit}>
-              <div className="form-label-group">
-                  <input type="text" name="name" id="inputName" className="form-control" placeholder="User Name" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputName">Project name</label>
-                </div>
-                <div className="form-label-group">
-                  <input type="text-box" name="description" id="inputDescription" className="form-control" placeholder="Description" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputDescription">Description</label>
-                </div>
-                <hr />
-                <div className="form-label-group">
-                  <input type="text" name="acronym" id="inputAcronym" className="form-control" placeholder="Acronym" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputAcronym">Acronym</label>
-                </div>
-                <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Create</button>
-
-                <hr className="my-4" />
-                <h3 style={{textAlign:'center'}}>{this.state.message}</h3>
-                
-              </form>
-            </div>
+      
+      <div className="section login-container" style={{overflow:"auto"}}>
+      <section className="pricing py-5">
+  <div className="container">
+    <div className="row">
+      {/* Free Tier */}
+      <div className="col" style={{paddingBottom: "20px"}}>
+        <div className="card mb-5 mb-lg-0">
+          <div className="card-body">
+            <h5 className="card-title text-muted text-uppercase text-center">Free</h5>
+            <h6 className="card-price text-center">$0<span className="period">/month</span></h6>
+            <hr />
+            <ul className="fa-ul">
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Single User</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>5GB Storage</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Unlimited Public Projects</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Community Access</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Unlimited Private Projects</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Dedicated Phone Support</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Free Subdomain</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Monthly Status Reports</li>
+            </ul>
+            <button className="btn btn-block btn-primary text-uppercase" onClick={() => this.setState({ type: 1, visibility: " "})}>Button</button>
           </div>
-          
         </div>
       </div>
-     
+      {/* Plus Tier */}
+      <div className="col" style={{paddingBottom: "20px"}}>
+        <div className="card mb-5 mb-lg-0">
+          <div className="card-body">
+            <h5 className="card-title text-muted text-uppercase text-center">Plus</h5>
+            <h6 className="card-price text-center">$9<span className="period">/month</span></h6>
+            <hr />
+            <ul className="fa-ul">
+              <li><span className="fa-li"><i className="fas fa-check" /></span><strong>5 Users</strong></li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>50GB Storage</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Unlimited Public Projects</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Community Access</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Unlimited Private Projects</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Dedicated Phone Support</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Free Subdomain</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Monthly Status Reports</li>
+            </ul>
+            <button className="btn btn-block btn-primary text-uppercase" onClick={() => this.setState({ type: 1, visibility: " "})}>Button</button>
+          </div>
+        </div>
+      </div>
+      <div class="w-100"></div>
+      {/* Free Tier */}
+      <div className="col" style={{paddingBottom: "20px"}}>
+        <div className="card mb-5 mb-lg-0">
+          <div className="card-body">
+            <h5 className="card-title text-muted text-uppercase text-center">Free</h5>
+            <h6 className="card-price text-center">$0<span className="period">/month</span></h6>
+            <hr />
+            <ul className="fa-ul">
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Single User</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>5GB Storage</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Unlimited Public Projects</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Community Access</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Unlimited Private Projects</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Dedicated Phone Support</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Free Subdomain</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Monthly Status Reports</li>
+            </ul>
+            <button className="btn btn-block btn-primary text-uppercase" onClick={() => this.setState({ type: 1, visibility: " "})}>Button</button>
+          </div>
+        </div>
+      </div>
+{/* Free Tier */}
+      <div className="col" style={{paddingBottom: "20px"}}>
+        <div className="card mb-5 mb-lg-0">
+          <div className="card-body">
+            <h5 className="card-title text-muted text-uppercase text-center">Free</h5>
+            <h6 className="card-price text-center">$0<span className="period">/month</span></h6>
+            <hr />
+            <ul className="fa-ul">
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Single User</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>5GB Storage</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Unlimited Public Projects</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Community Access</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Unlimited Private Projects</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Dedicated Phone Support</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Free Subdomain</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Monthly Status Reports</li>
+            </ul>
+            <button className="btn btn-block btn-primary text-uppercase" onClick={() => this.setState({ type: 1, visibility: " "})}>Button</button>
+          </div>
+        </div>
+      </div>    
+    </div>
+  </div>
+</section>
+
+     <FormProject visibility= {this.state.visibility}></FormProject>
     </div>
     
     );
