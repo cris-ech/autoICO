@@ -80,7 +80,8 @@ exports.NewProject =  function (req, res) {
             cap: req.body.cap,
             t_init: req.body.t_init,
             t_end: req.body.t_end,
-            decimals: req.body.decimals
+            decimals: req.body.decimals,
+            type: req.body.type
   
           });
           console.log('antes de guardar');

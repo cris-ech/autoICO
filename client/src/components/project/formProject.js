@@ -37,7 +37,8 @@ export default class formProject extends Component {
       cap: this.state.cap,
       wallet: this.state.wallet,
       t_init: this.state.t_init,
-      t_end: this.state.t_end
+      t_end: this.state.t_end,
+      type: this.state.type
       
 
     };

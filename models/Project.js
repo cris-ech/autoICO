@@ -27,7 +27,7 @@ const ProjectSchema = new Schema({
     required: true
   },
   cap: {
-    type: String,
+    type: Number,
     required: false
   },
   t_init: {
@@ -47,6 +47,10 @@ const ProjectSchema = new Schema({
   contractAddress: {
     type: String,
     default: null
+  },
+  type: {
+    type: Number,
+    required: true
   },
 
   user: { 

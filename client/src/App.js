@@ -10,7 +10,7 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Register from './components/auth/Register';
 import Project from './components/project/Project';
-import UserProjects from './components/project/UserProjects';
+import UserProjects from './components/project/UserProjectsList';
 
 class App extends Component {
   render() {
