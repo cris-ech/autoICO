@@ -22,10 +22,33 @@ const ProjectSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  state: {
+  wallet: {
     type: String,
     required: true
   },
+  cap: {
+    type: String,
+    required: false
+  },
+  t_init: {
+    type: Date,
+    default: Date.now,
+    required: false
+  },
+  t_end: {
+    type: Date,
+    default: Date.now,
+    required: false
+  },
+  decimals: {
+    type: String,
+    required: true
+  },
+  contractAddress: {
+    type: String,
+    default: null
+  },
+
   user: { 
     type: Schema.Types.ObjectId,
     ref: "User" 

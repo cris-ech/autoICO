@@ -75,7 +75,12 @@ exports.NewProject =  function (req, res) {
             acronym: req.body.acronym,
             description: req.body.description,
             state: "preCode",
-            user: projectUser
+            user: projectUser,
+            wallet: req.body.wallet,
+            cap: req.body.cap,
+            t_init: req.body.t_init,
+            t_end: req.body.t_end,
+            decimals: req.body.decimals
   
           });
           console.log('antes de guardar');

@@ -10,6 +10,7 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Register from './components/auth/Register';
 import Project from './components/project/Project';
+import UserProjects from './components/project/UserProjects';
 
 class App extends Component {
   render() {
@@ -28,6 +29,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/project" component={withAuth(Project)} />
+          <Route path="/user-projects" component={withAuth(UserProjects)} />
         </Switch>
         
        
