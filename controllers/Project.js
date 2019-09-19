@@ -178,9 +178,9 @@ function replaceMigrations (userName,project){
 
   const options = {
     //files: folder + '2_tokenMintable.js',
-    files: folder + 'tex.js',
-    from: [/name_r/g, 'symbol_r', /decimals_r/g],
-    to: [project.name, project.acronym, project.decimals],
+    files: folder + 'values.js',
+    from: [/name_r/g, 'symbol_r', /decimals_r/g, /wallet_r/g, 'cap_r', 't_init_r', 't_end_r', 'rate_r'],
+    to: [project.name, project.acronym, project.decimals, project.wallet, project.cap || 0, project.t_init || 0, project.t_end || 0, 2000],
     countMatches: true,
   };
   try {
@@ -191,28 +191,6 @@ function replaceMigrations (userName,project){
     console.error('Error occurred:', error);
   }
 
-  switch(project.type) {
-    
-    
-    case 1: 
-      const options = {
-        files: folder + '3_crowdsaleMintable.js',
-        from: ['rate_r', 'wallet_r'],
-        to: ["fdfdgd", project.wallet],
-        countMatches: true
-      };
-      try {
-        const results = replace.sync(options);
-        console.log('Replacement results:', results);
-      }
-      catch (error) {
-        console.error('Error occurred:', error);
-      } break;
-
-
-
-
-};
 
 }
 
@@ -240,12 +218,27 @@ exports.DeployProject = function (req,res) {
         console.log(decoded);
         createProjectFiles(decoded.name, req.body.name, req.body.type );
         replaceMigrations(decoded.name, req.body);
+        const options = {cwd: "./projects/" + decoded.name + "/" + req.body.name + "/" };
+        const command = "./node_modules/.bin/truffle migrate --f 2 --to 3 "
+        exec(command, options,(error, stdout, stderr) => {
+          if (error) {
+            //res.send(error);
+            console.log(`stdout: ${stdout}`);
+            console.log(`stderr: ${stderr}`);
+            return console.error(`exec error: ${error}`);
+          }
+          console.log(`stdout: ${stdout}`);
+          console.log(`stderr: ${stderr}`);
+          res.sendStatus(200);
+    
+          });
+
 
       } 
     });
   }
   
-  //replace values in the migration with the project values
+  
 
 
 
