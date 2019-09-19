@@ -15,12 +15,15 @@ router.post("/register", UserController.UserRegister);
 // @access Public
 router.post("/login", UserController.UserLogin);
 
-// @route POST users/logout
+// @route GET users/logout
 // @desc Logout an user and remove JWT from cookies
 // @access Public
 router.get("/logout",UserController.UserLogout);
   
-
+// @route GET users/userProjects
+// @desc Get users projects
+// @access Public
+router.get("/userProjects",UserController.UserProjects);
 
 
 

@@ -11,6 +11,7 @@ const validateLoginInput = require("../validation/login");
 
 // Load User model
 const User = require("../models/User");
+const Project = require("../models/Project");
 
 
 //Function create folder for an user
@@ -137,6 +138,35 @@ exports.UserLogout = function (req, res) {
       //console.log(decoded);
      //res.status(200);
       res.clearCookie('token',{httpOnly: true}).sendStatus(200);
+    }
+  });
+  };
+}
+
+
+//Controller for get user projects
+exports.UserProjects = function (req,res) {
+  const token = 
+  req.body.token ||
+  req.query.token ||
+  req.headers['x-access-token'] ||
+  req.cookies.token;
+
+  const secret = process.env.SECRET;  
+  
+  if (!token) {
+  res.status(401).send('Unauthorized: No token provided');
+  } else {
+  jwt.verify(token, secret, function(err, decoded) {
+    if (err) {
+      res.status(401).send('Unauthorized: Invalid token');
+    } else {
+      User.findById(decoded.id).populate('projects').exec(function (err, UserAndProjects) {
+        if (err) return console.log(err);
+        //console.log(UserAndProjects.projects);
+
+        res.status(200).json(UserAndProjects.projects);
+      });
     }
   });
   };

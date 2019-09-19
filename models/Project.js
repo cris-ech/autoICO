@@ -52,10 +52,19 @@ const ProjectSchema = new Schema({
     type: Number,
     required: true
   },
+  rate: {
+    type: Number,
+    default: 2000,
+    required: false
+  },
+  state: {
+    type: String,
+    required: true
+  },
 
   user: { 
     type: Schema.Types.ObjectId,
-    ref: "User" 
+    ref: "user" 
   }
 
 });

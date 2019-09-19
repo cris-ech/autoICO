@@ -11,6 +11,11 @@ const ProjectController = require('../controllers/Project');
 router.post("/newProject",withAuth ,ProjectController.NewProject); 
 
 
+// @route POST projects/deployProject
+// @desc Deploy a project
+// @access Public
+router.post("/deployProject",withAuth ,ProjectController.DeployProject); 
+
 
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const { exec } = require('child_process');
 const jwt = require("jsonwebtoken");
+const replace = require('replace-in-file');
 require('dotenv').config();
 
 // Load project model
@@ -41,6 +42,23 @@ function createProjectStructure (userName, projectName){
   })
 
 };
+
+function decodedToken (token) {
+  const secret = process.env.SECRET;
+  if (!token) {
+    res.status(401).send('Unauthorized: No token provided');
+    } else {
+    jwt.verify(token, secret, function(err, decoded) {
+      if (err) {
+        res.status(401).send('Unauthorized: Invalid token');
+      } else {
+        return decoded;
+      }
+    } 
+      )}
+};
+
+
 
 
 
@@ -115,4 +133,120 @@ exports.NewProject =  function (req, res) {
     };
 
   
+};
+
+
+//Function create basic structure of the project
+function createProjectFiles (userName, projectName,type){
+  
+  const folderUser = "./projects/" + userName + "/" ; 
+
+  switch(type) {
+    //copy mintable contract and migration
+    case 1: 
+      const command1 = "cp ./ICO_files/MintableCrowdsale.sol " + folderUser 
+      + projectName + "/contracts/";
+      const command2 = "cp ./ICO_files/3_crowdsaleMintable.js " + folderUser 
+      + projectName + "/migrations/";
+      const options = {cwd: "./" };
+      exec(command1, options,(error, stdout, stderr) => {
+      if (error) {
+        //res.send(error);
+        return console.error(`exec error: ${error}`);
+      }
+      exec(command2, options,(error, stdout, stderr) => {
+        if (error) {
+          //res.send(error);
+          return console.error(`exec error: ${error}`);
+        }
+      return true ;
+    })
+
+      });
+
+
+};
+
+}
+
+
+//Function set the correct values of the migrations 
+function replaceMigrations (userName,project){
+  //console.log(project);
+  
+  const folder = "./projects/" + userName + "/" + project.name + '/migrations/' ; 
+
+  const options = {
+    //files: folder + '2_tokenMintable.js',
+    files: folder + 'tex.js',
+    from: [/name_r/g, 'symbol_r', /decimals_r/g],
+    to: [project.name, project.acronym, project.decimals],
+    countMatches: true,
+  };
+  try {
+    const results = replace.sync(options);
+    console.log('Replacement results:', results);
+  }
+  catch (error) {
+    console.error('Error occurred:', error);
+  }
+
+  switch(project.type) {
+    
+    
+    case 1: 
+      const options = {
+        files: folder + '3_crowdsaleMintable.js',
+        from: ['rate_r', 'wallet_r'],
+        to: ["fdfdgd", project.wallet],
+        countMatches: true
+      };
+      try {
+        const results = replace.sync(options);
+        console.log('Replacement results:', results);
+      }
+      catch (error) {
+        console.error('Error occurred:', error);
+      } break;
+
+
+
+
+};
+
+}
+
+
+
+
+
+exports.DeployProject = function (req,res) {
+  //Load user info from JWT
+  //FUTURE WORK --> wrap this into a function
+  const token = 
+  req.body.token ||
+  req.query.token ||
+  req.headers['x-access-token'] ||
+  req.cookies.token;
+
+  const secret = process.env.SECRET;
+  if (!token) {
+    res.status(401).send('Unauthorized: No token provided');
+    } else {
+    jwt.verify(token, secret, function(err, decoded) {
+      if (err) {
+        res.status(401).send('Unauthorized: Invalid token');
+      } else {
+        console.log(decoded);
+        createProjectFiles(decoded.name, req.body.name, req.body.type );
+        replaceMigrations(decoded.name, req.body);
+
+      } 
+    });
+  }
+  
+  //replace values in the migration with the project values
+
+
+
 };

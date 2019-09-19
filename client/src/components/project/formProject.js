@@ -12,7 +12,7 @@ export default class formProject extends Component {
       message: "",
       type: "",
       visibility: this.props.visibility,
-      decimals: 10,
+      decimals: 18,
       cap: null,
       wallet : "",
       t_init: null,

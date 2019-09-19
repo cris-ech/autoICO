@@ -22,7 +22,7 @@ const UserSchema = new Schema({
   },
   projects: [{
     type: Schema.Types.ObjectId,
-    ref: "Project",
+    ref: "projects",
     default: []
 
   }]
