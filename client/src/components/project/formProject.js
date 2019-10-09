@@ -36,8 +36,8 @@ export default class formProject extends Component {
       decimals: this.state.decimals,
       cap: this.state.cap,
       wallet: this.state.wallet,
-      t_init: this.state.t_init,
-      t_end: this.state.t_end,
+      t_init: (this.state.t_init === null) ? this.state.t_init : Date.parse(this.state.t_init) / 1000,
+      t_end: (this.state.t_end === null) ? this.state.t_end : Date.parse(this.state.t_end) / 1000,
       type: this.state.type
       
 

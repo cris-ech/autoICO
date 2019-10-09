@@ -143,7 +143,7 @@ function createProjectFiles (userName, projectName,type){
 
   switch(type) {
     //copy mintable contract and migration
-    case 1: 
+    case 1: {
       const command1 = "cp ./ICO_files/MintableCrowdsale.sol " + folderUser 
       + projectName + "/contracts/";
       const command2 = "cp ./ICO_files/3_crowdsaleMintable.js " + folderUser 
@@ -163,6 +163,73 @@ function createProjectFiles (userName, projectName,type){
     })
 
       });
+      break;}
+    //copy capped contract and migration
+    case 2: {
+      const command1 = "cp ./ICO_files/CappedCrowdsale.sol " + folderUser 
+      + projectName + "/contracts/";
+      const command2 = "cp ./ICO_files/3_crowdsaleCapped.js " + folderUser 
+      + projectName + "/migrations/";
+      const options = {cwd: "./" };
+      exec(command1, options,(error, stdout, stderr) => {
+      if (error) {
+        //res.send(error);
+        return console.error(`exec error: ${error}`);
+      }
+      exec(command2, options,(error, stdout, stderr) => {
+        if (error) {
+          //res.send(error);
+          return console.error(`exec error: ${error}`);
+        }
+      return true ;
+    })
+
+      });
+      break;}
+    //copy timed contract and migration
+    case 3: {
+    const command1 = "cp ./ICO_files/TimedCrowdsale.sol " + folderUser 
+    + projectName + "/contracts/";
+    const command2 = "cp ./ICO_files/3_crowdsaleTimed.js " + folderUser 
+    + projectName + "/migrations/";
+    const options = {cwd: "./" };
+    exec(command1, options,(error, stdout, stderr) => {
+    if (error) {
+      //res.send(error);
+      return console.error(`exec error: ${error}`);
+    }
+    exec(command2, options,(error, stdout, stderr) => {
+      if (error) {
+        //res.send(error);
+        return console.error(`exec error: ${error}`);
+      }
+    return true ;
+  })
+
+    });
+    break;}
+    //copy whitelist contract and migration
+    case 4: {
+    const command1 = "cp ./ICO_files/WhitelistCrowdsale.sol " + folderUser 
+    + projectName + "/contracts/";
+    const command2 = "cp ./ICO_files/3_crowdsaleWhitelist.js " + folderUser 
+    + projectName + "/migrations/";
+    const options = {cwd: "./" };
+    exec(command1, options,(error, stdout, stderr) => {
+    if (error) {
+      //res.send(error);
+      return console.error(`exec error: ${error}`);
+    }
+    exec(command2, options,(error, stdout, stderr) => {
+      if (error) {
+        //res.send(error);
+        return console.error(`exec error: ${error}`);
+      }
+    return true ;
+  })
+
+    });
+    break;}
 
 
 };

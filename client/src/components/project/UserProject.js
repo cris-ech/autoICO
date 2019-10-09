@@ -86,8 +86,7 @@ export default class UserProject extends Component {
           </ul>
           </div>
           <div className="row">
-          <button className="btn  btn-primary " >Deploy</button>
-          </div>
+          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Deploy</button>          </div>
         </div>
       </div>
       {/* /.row */}
@@ -120,8 +119,7 @@ export default class UserProject extends Component {
           </ul>
           </div>
           <div className="row">
-          <button className="btn  btn-primary " >Deploy</button>
-          </div>
+          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Deploy</button>          </div>
         </div>
       </div>
       {/* /.row */}
@@ -154,8 +152,7 @@ export default class UserProject extends Component {
           </ul>
           </div>
           <div className="row">
-          <button className="btn  btn-primary " >Deploy</button>
-          </div>
+          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Deploy</button>          </div>
         </div>
       </div>
       {/* /.row */}

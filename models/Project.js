@@ -28,16 +28,15 @@ const ProjectSchema = new Schema({
   },
   cap: {
     type: Number,
-    required: false
+    required: false,
+    default: 1
   },
   t_init: {
-    type: Date,
-    default: Date.now,
+    type: Number,
     required: false
   },
   t_end: {
-    type: Date,
-    default: Date.now,
+    type: Number,
     required: false
   },
   decimals: {

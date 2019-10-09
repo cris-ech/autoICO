@@ -112,7 +112,7 @@ export default class Project extends Component {
             <ul className="fa-ul">
               <li><span className="fa-li"><i className="fas fa-check" /></span>Token Name</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Token Symbol</li>
-              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Limited Tokens</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Max amount of ether</li>
               <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Limited Crowdsale Time</li>
               <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Access List</li>
              
@@ -131,7 +131,7 @@ export default class Project extends Component {
             <ul className="fa-ul">
               <li><span className="fa-li"><i className="fas fa-check" /></span>Token Name</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Token Symbol</li>
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Limited Tokens</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Max amount of ether</li>
               <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Limited Crowdsale Time</li>
               <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Access List</li>
             </ul>
@@ -151,7 +151,7 @@ export default class Project extends Component {
             <ul className="fa-ul">
               <li><span className="fa-li"><i className="fas fa-check" /></span>Token Name</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Token Symbol</li>
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Limited Tokens</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Max amount of ether</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Limited Crowdsale Time</li>
               <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Access List</li>
             </ul>
@@ -169,7 +169,7 @@ export default class Project extends Component {
             <ul className="fa-ul">
               <li><span className="fa-li"><i className="fas fa-check" /></span>Token Name</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Token Symbol</li>
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Limited Tokens</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Max amount of ether</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Limited Crowdsale Time</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Access List</li>
             </ul>
