@@ -43,9 +43,15 @@ const ProjectSchema = new Schema({
     type: String,
     required: true
   },
-  contractAddress: {
+  tokenAddress: {
     type: String,
-    default: null
+    default: null,
+    required: false
+  },
+  icoAddress: {
+    type: String,
+    default: null,
+    required: false
   },
   type: {
     type: Number,

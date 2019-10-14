@@ -1,6 +1,7 @@
 const { exec } = require('child_process');
 const jwt = require("jsonwebtoken");
 const replace = require('replace-in-file');
+const fs = require('fs');
 require('dotenv').config();
 
 // Load project model
@@ -262,6 +263,31 @@ function replaceMigrations (userName,project){
 }
 
 
+function updateAddress (userName,project){
+
+  const folderToken = "./projects/" + userName + "/" + project.name + '/build/contracts/' + 'IcoToken.json'  ; 
+  const folderIco = "./projects/" + userName + "/" + project.name + '/build/contracts/' + 'IcoCrowdsale.json' ;
+  
+  let tokenFile = fs.readFileSync(folderToken);
+  let icoFile = fs.readFileSync(folderIco);
+
+  const token = JSON.parse(tokenFile);
+  const ico = JSON.parse(icoFile);
+  
+  const query = { _id: project._id};
+  const update = { tokenAddress: token.networks[5777].address, icoAddress: ico.networks[5777].address};
+
+  Project.updateOne(query, update).then((rawResponse) => {
+
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+  
+
+
+}
+
 
 
 
@@ -296,6 +322,7 @@ exports.DeployProject = function (req,res) {
           }
           console.log(`stdout: ${stdout}`);
           console.log(`stderr: ${stderr}`);
+          updateAddress(decoded.name,req.body);
           res.sendStatus(200);
     
           });
