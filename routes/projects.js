@@ -17,5 +17,10 @@ router.post("/newProject",withAuth ,ProjectController.NewProject);
 router.post("/deployProject",withAuth ,ProjectController.DeployProject); 
 
 
+// @route GET projects/getAllProjects
+// @desc  return all the projects
+// @access Public
+router.get("/getAllProjects", ProjectController.GetAllProjects); 
+
 
 module.exports = router;

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import UserProject from './UserProject';
+import UserProject from './UserAllProject';
 import './projects.css';
 
 
-export default class UserProjectsList extends Component {
+export default class AllProjects extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -15,7 +15,7 @@ export default class UserProjectsList extends Component {
   }
 
   componentDidMount() {
-    fetch('/users/userProjects')
+    fetch('/projects/getAllProjects')
     .then(res => {
       if(res.status === 200){
       //console.log(res);

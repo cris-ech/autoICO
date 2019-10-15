@@ -275,7 +275,7 @@ function updateAddress (userName,project){
   const ico = JSON.parse(icoFile);
   
   const query = { _id: project._id};
-  const update = { tokenAddress: token.networks[5777].address, icoAddress: ico.networks[5777].address};
+  const update = { tokenAddress: token.networks[5777].address, icoAddress: ico.networks[5777].address, state: "deployed"};
 
   Project.updateOne(query, update).then((rawResponse) => {
 
@@ -337,3 +337,12 @@ exports.DeployProject = function (req,res) {
 
 
 };
+
+
+
+exports.GetAllProjects = function (req,res) {
+  Project.find({}).then((obj, err) =>{
+    res.status(200).json(obj);
+  })
+
+}

@@ -146,8 +146,8 @@ export default class formProject extends Component {
                   <label htmlFor="inputWallet">Wallet to store the ether</label>
                   </div>
                 <div className="form-label-group">
-                  <input type="number" name="cap" id="inputNumberTokens" className="form-control" placeholder="Number of Tokens" defaultValue={1} required onChange={this.handleInputChange} />
-                  <label htmlFor="inputNumberTokens">Number Of Tokens</label>
+                  <input type="number" name="cap" id="inputNumberTokens" className="form-control" placeholder="Max ether" defaultValue={1} required onChange={this.handleInputChange} />
+                  <label htmlFor="inputNumberTokens">Max ether</label>
                 </div>
                 <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Create</button>
 
@@ -187,8 +187,8 @@ export default class formProject extends Component {
                   <label htmlFor="inputWallet">Wallet to store the ether</label>
                 </div>
                 <div className="form-label-group">
-                  <input type="number" name="cap" id="inputNumberTokens" className="form-control" placeholder="Number of Tokens" defaultValue={1} required onChange={this.handleInputChange} />
-                  <label htmlFor="inputNumberTokens">Number Of Tokens</label>
+                  <input type="number" name="cap" id="inputNumberTokens" className="form-control" placeholder="Max ether" defaultValue={1} required onChange={this.handleInputChange} />
+                  <label htmlFor="inputNumberTokens">Max ether</label>
                 </div>
                 <div className="form-label-group">
                   <input type="date" name="t_init" id="inputStartDate" className="form-control" placeholder="Start Day" required onChange={this.handleInputChange} />
@@ -236,8 +236,8 @@ export default class formProject extends Component {
                   <label htmlFor="inputWallet">Wallet to store the ether</label>
                </div>
                 <div className="form-label-group">
-                  <input type="number" name="NumberTokens" id="inputNumberTokens" className="form-control" placeholder="Number of Tokens" defaultValue={1} required onChange={this.handleInputChange} />
-                  <label htmlFor="inputNumberTokens">Number Of Tokens</label>
+                  <input type="number" name="cap" id="inputNumberTokens" className="form-control" placeholder="Max ether" defaultValue={1} required onChange={this.handleInputChange} />
+                  <label htmlFor="inputNumberTokens">Max ether</label>
                 </div>
                 <div className="form-label-group">
                   <input type="date" name="StartDate" id="inputStartDate" className="form-control" placeholder="Start Day" required onChange={this.handleInputChange} />

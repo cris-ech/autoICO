@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import web3 from '../../helpers/web3';
 import './projects.css';
 
 export default class UserProject extends Component {
@@ -6,8 +7,13 @@ export default class UserProject extends Component {
     super(props)
     this.state = {
       project: this.props.project,
-      startDate : Date(this.props.project.t_init),
-      endDate : Date(this.props.project.t_end)
+      startDate :  Date(this.props.project.t_init),
+      endDate :  Date(this.props.project.t_end),
+      value : 1,
+      icoAddress : this.props.project.icoAddress,
+      tokenAddress : this.props.project.tokenAddress,
+      accounts: []
+
 
     };
     
@@ -15,20 +21,20 @@ export default class UserProject extends Component {
   }
 
   handleOnClick = () => {
-    fetch('/projects/deployProject', {
-      method: 'POST',
-      body: JSON.stringify(this.state.project),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then(res => {
-      if(res.status === 200){
-      console.log(res);
-      }
-      })
+    web3.eth.sendTransaction({to:this.state.icoAddress,
+      from: this.state.accounts[0], 
+     value:web3.utils.toWei(this.state.value.toString(), "ether")}
+      ,function (err, res){
+        console.log(res);
+      });
     
    
+  }
+
+  async componentDidMount() {
+    const accounts = await web3.eth.getAccounts();
+
+    this.setState({ accounts });
   }
 
   render(){
@@ -47,15 +53,9 @@ export default class UserProject extends Component {
           <h3>{this.props.project.name}</h3>
           <p>{this.props.project.description}</p>
           <div className="row">
-          <h5>Details</h5>
           </div>
           <div className="row">
-          <ul className="" >
-            <li className="">Wallet: {this.props.project.wallet}</li>
-          </ul>
-          </div>
-          <div className="row">
-          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Deploy</button>
+          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Buy</button>
           </div>
         </div>
       </div>
@@ -82,14 +82,11 @@ export default class UserProject extends Component {
           </div>
           <div className="row">
           <ul className="" >
-            <li className="">Wallet: {this.props.project.wallet}</li>
             <li className="">Max ether: {this.props.project.cap}</li>
-            <li className="">Start Date: {this.state.startDate}</li>
-            <li className="">End Date: {this.state.endDate}</li>
           </ul>
           </div>
           <div className="row">
-          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Deploy</button>          </div>
+          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Buy</button>          </div>
         </div>
       </div>
       {/* /.row */}
@@ -115,14 +112,13 @@ export default class UserProject extends Component {
           </div>
           <div className="row">
           <ul className="" >
-            <li className="">Wallet: {this.props.project.wallet}</li>
             <li className="">Max ether: {this.props.project.cap}</li>
             <li className="">Start Date: {this.state.startDate}</li>
             <li className="">End Date: {this.state.endDate}</li>
           </ul>
           </div>
           <div className="row">
-          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Deploy</button>          </div>
+          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Buy</button>          </div>
         </div>
       </div>
       {/* /.row */}
@@ -148,14 +144,13 @@ export default class UserProject extends Component {
           </div>
           <div className="row">
           <ul className="" >
-            <li className="">Wallet: {this.props.project.wallet}</li>
-            <li className="">Number of tokens: {this.props.project.cap}</li>
-            <li className="">Start Date: {this.props.project.t_init}</li>
-            <li className="">End Date: {this.props.project.t_end}</li>
+            <li className="">Max ether: {this.props.project.cap}</li>
+            <li className="">Start Date: {this.state.startDate}</li>
+            <li className="">End Date: {this.state.endDate}</li>
           </ul>
           </div>
           <div className="row">
-          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Deploy</button>          </div>
+          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Buy</button>          </div>
         </div>
       </div>
       {/* /.row */}
@@ -176,7 +171,7 @@ export default class UserProject extends Component {
       <div className="col-md-7">
         <h3>{this.props.project.name}</h3>
         <p>{this.props.project.description}</p>
-        <button className="btn  btn-primary " >Deploy</button>
+        <button className="btn  btn-primary " >Buy</button>
       </div>
     </div>
     {/* /.row */}
