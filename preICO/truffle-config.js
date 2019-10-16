@@ -1,6 +1,5 @@
-const HDWalletProvider = require("@truffle/hdwallet-provider");
+const HDWalletProvider = require("truffle-hdwallet-provider");
 require('dotenv').config();
-
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,
@@ -51,9 +50,9 @@ module.exports = {
       network_id: "*",       // Any network (default: none)
      },
      rinkeby: {
-      provider: () => new HDWalletProvider(process.env.MNENOMIC, "https://rinkeby.infura.io/v3/" + process.env.INFURA_API_KEY),
+      provider: () => new HDWalletProvider(process.env.MNENOMIC, process.env.INFURA_API_KEY),
       network_id: 4,
-      gas: 3000000,
+      gas: 6700000,
       gasPrice: 10000000000
     },
 
