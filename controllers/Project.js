@@ -276,6 +276,7 @@ function updateAddress (userName,project){
   
   const query = { _id: project._id};
   const update = { tokenAddress: token.networks[5777].address, icoAddress: ico.networks[5777].address, state: "deployed"};
+  //const update = { tokenAddress: token.networks[4].address, icoAddress: ico.networks[4].address, state: "deployed"};
 
   Project.updateOne(query, update).then((rawResponse) => {
 
