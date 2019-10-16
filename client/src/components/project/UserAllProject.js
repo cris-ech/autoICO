@@ -20,7 +20,8 @@ export default class UserProject extends Component {
 
   }
 
-  handleOnClick = () => {
+  onSubmit = (event) => {
+    event.preventDefault();
     web3.eth.sendTransaction({to:this.state.icoAddress,
       from: this.state.accounts[0], 
      value:web3.utils.toWei(this.state.value.toString(), "ether")}
@@ -30,6 +31,13 @@ export default class UserProject extends Component {
     
    
   }
+
+  handleInputChange = (event) => {
+    const { value, name } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
   async componentDidMount() {
     const accounts = await web3.eth.getAccounts();
@@ -55,7 +63,13 @@ export default class UserProject extends Component {
           <div className="row">
           </div>
           <div className="row">
-          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Buy</button>
+          <form className="form" onSubmit={this.onSubmit}>
+          <div className="form-label-group">
+           <input type="number" name="value" id="inputNumberTokens" className="form-control" placeholder="ether" defaultValue={1} required onChange={this.handleInputChange} />
+           <label htmlFor="inputNumberTokens">Max ether</label>
+           </div>
+          <button className="btn  btn-primary " type="submit" >Buy</button>
+          </form>
           </div>
         </div>
       </div>
@@ -86,7 +100,13 @@ export default class UserProject extends Component {
           </ul>
           </div>
           <div className="row">
-          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Buy</button>          </div>
+          <form className="form" onSubmit={this.onSubmit}>
+          <div className="form-label-group">
+           <input type="number" name="value" id="inputNumberTokens" className="form-control" placeholder="ether" defaultValue={1} required onChange={this.handleInputChange} />
+           <label htmlFor="inputNumberTokens">Ether</label>
+           </div>
+          <button className="btn  btn-primary " type="submit" >Buy</button>
+          </form>          </div>
         </div>
       </div>
       {/* /.row */}
@@ -118,7 +138,13 @@ export default class UserProject extends Component {
           </ul>
           </div>
           <div className="row">
-          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Buy</button>          </div>
+          <form className="form" onSubmit={this.onSubmit}>
+          <div className="form-label-group">
+           <input type="number" name="value" id="inputNumberTokens" className="form-control" placeholder="ether" defaultValue={1} required onChange={this.handleInputChange} />
+           <label htmlFor="inputNumberTokens">Ether </label>
+           </div>
+          <button className="btn  btn-primary " type="submit" >Buy</button>
+          </form>          </div>
         </div>
       </div>
       {/* /.row */}
@@ -150,7 +176,13 @@ export default class UserProject extends Component {
           </ul>
           </div>
           <div className="row">
-          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Buy</button>          </div>
+          <form className="form" onSubmit={this.onSubmit}>
+          <div className="form-label-group">
+           <input type="number" name="value" id="inputNumberTokens" className="form-control" placeholder="ether" defaultValue={1} required onChange={this.handleInputChange} />
+           <label htmlFor="inputNumberTokens">Ether </label>
+           </div>
+          <button className="btn  btn-primary " type="submit" >Buy</button>
+          </form>          </div>
         </div>
       </div>
       {/* /.row */}
@@ -171,8 +203,13 @@ export default class UserProject extends Component {
       <div className="col-md-7">
         <h3>{this.props.project.name}</h3>
         <p>{this.props.project.description}</p>
-        <button className="btn  btn-primary " >Buy</button>
-      </div>
+        <form className="form" onSubmit={this.onSubmit}>
+          <div className="form-label-group">
+           <input type="number" name="value" id="inputNumberTokens" className="form-control" placeholder="ether" defaultValue={1} required onChange={this.handleInputChange} />
+           <label htmlFor="inputNumberTokens">Ether</label>
+           </div>
+          <button className="btn  btn-primary " type="submit" >Buy</button>
+          </form>      </div>
     </div>
     {/* /.row */}
     <hr />
