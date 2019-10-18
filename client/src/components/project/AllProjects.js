@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import UserProject from './UserAllProject';
+import web3 from '../../helpers/web3';
+
 import './projects.css';
 
 
@@ -30,6 +32,15 @@ export default class AllProjects extends Component {
     
 
   render(){
+    if(web3 === null){
+      return(
+      <div className="section projects-container" style={{overflow:"auto"}}>
+      <div style={{textAlign:"center", paddingTop:"100px"}}>
+      <h2>You should install metamask to access this section in order to buy tokens</h2>
+      <h3><a href="https://metamask.io/" target = "_blank">Get metamask</a></h3>
+      </div>
+      </div>);
+    }
     return(
   <div className="section projects-container" style={{overflow:"auto"}}>
   {this.state.projects.map((project) => 

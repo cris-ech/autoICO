@@ -30,6 +30,7 @@ export default class UserProjectsList extends Component {
     
 
   render(){
+    
     return(
   <div className="section projects-container" style={{overflow:"auto"}}>
   {this.state.projects.map((project) => 

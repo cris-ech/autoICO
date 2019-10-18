@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import web3 from '../../helpers/web3';
+
 import './projects.css';
 
 export default class UserProject extends Component {
@@ -21,6 +22,7 @@ export default class UserProject extends Component {
   }
 
   onSubmit = (event) => {
+    if(web3 != null){
     event.preventDefault();
     web3.eth.sendTransaction({to:this.state.icoAddress,
       from: this.state.accounts[0], 
@@ -28,7 +30,7 @@ export default class UserProject extends Component {
       ,function (err, res){
         console.log(res);
       });
-    
+    }
    
   }
 
@@ -40,9 +42,11 @@ export default class UserProject extends Component {
   };
 
   async componentDidMount() {
+    if(web3 != null){
     const accounts = await web3.eth.getAccounts();
 
     this.setState({ accounts });
+    }
   }
 
   render(){
