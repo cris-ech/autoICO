@@ -58,7 +58,7 @@ export default class Project extends Component {
     }); 
     this.setState({myDivToFocus: React.createRef()})
     prueba(this.state.myDivToFocus);
- 
+
 }
 
 
@@ -81,7 +81,7 @@ export default class Project extends Component {
     })
     .then(res => {
       if (res.status === 200) {
-        this.setState({message: 'Your project has been created !'})
+        this.setState({message: 'Tu proyecto ha sido creado !'})
 
       } else {
         const error = new Error(res.error);
@@ -90,7 +90,7 @@ export default class Project extends Component {
     })
     .catch(err => {
       console.error(err);
-      alert('Error in the proccess please try again');
+      alert('Ha ocurrido un error porfavor vuelve a intentarlo');
     })
     console.log(this.state);
   }
@@ -110,14 +110,14 @@ export default class Project extends Component {
             <h6 className="card-price text-center">Minted Crowdsale</h6>
             <hr />
             <ul className="fa-ul">
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Token Name</li>
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Token Symbol</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Nombre del token</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Simbolo del token</li>
               <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Max amount of ether</li>
-              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Limited Crowdsale Time</li>
-              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Access List</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Limite de tiempo</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Lista de acceso</li>
              
             </ul>
-            <button className="btn btn-block btn-primary text-uppercase" onClick={ () => this.handleOnClick(1)}>Select</button>
+            <button className="btn btn-block btn-primary text-uppercase" onClick={ () => this.handleOnClick(1)}>Seleccionar</button>
           </div>
         </div>
       </div>
@@ -129,13 +129,13 @@ export default class Project extends Component {
             <h6 className="card-price text-center">Capped Crowdsale</h6>
             <hr />
             <ul className="fa-ul">
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Token Name</li>
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Token Symbol</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Nombre del token</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Simbolo del token</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Max amount of ether</li>
-              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Limited Crowdsale Time</li>
-              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Access List</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Limite de tiempo</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Lista de acceso</li>
             </ul>
-            <button className="btn btn-block btn-primary text-uppercase" onClick={ () => this.handleOnClick(2)}>Select</button>
+            <button className="btn btn-block btn-primary text-uppercase" onClick={ () => this.handleOnClick(2)}>Seleccionar</button>
           </div>
         </div>
       </div>
@@ -149,13 +149,13 @@ export default class Project extends Component {
             <h6 className="card-price text-center">Timed Crowdsale</h6>
             <hr />
             <ul className="fa-ul">
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Token Name</li>
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Token Symbol</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Nombre del token</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Simbolo del token</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Max amount of ether</li>
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Limited Crowdsale Time</li>
-              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Access List</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Limite de tiempo</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Lista de acceso</li>
             </ul>
-            <button className="btn btn-block btn-primary text-uppercase" onClick={ () => this.handleOnClick(3)}>Select</button>
+            <button className="btn btn-block btn-primary text-uppercase" onClick={ () => this.handleOnClick(3)}>Seleccionar</button>
           </div>
         </div>
       </div>
@@ -167,13 +167,13 @@ export default class Project extends Component {
             <h6 className="card-price text-center">Whitelist Crowdsale</h6>
             <hr />
             <ul className="fa-ul">
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Token Name</li>
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Token Symbol</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Nombre del token</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Simbolo del token</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Max amount of ether</li>
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Limited Crowdsale Time</li>
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Access List</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Limite de tiempo</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Lista de acceso</li>
             </ul>
-            <button className="btn btn-block btn-primary text-uppercase" onClick={ () => this.handleOnClick(4)}>Select</button>
+            <button className="btn btn-block btn-primary text-uppercase" onClick={ () => this.handleOnClick(4)}>Seleccionar</button>
           </div>
         </div>
       </div>    

@@ -1,20 +1,46 @@
 import React, { Component } from 'react';
 import './projects.css';
 
+
 export default class UserProject extends Component {
   constructor(props) {
     super(props)
     this.state = {
       project: this.props.project,
-      startDate : Date(this.props.project.t_init),
-      endDate : Date(this.props.project.t_end)
+      startDate: this.props.project.t_init,
+      endDate: this.props.project.t_end,
+      state: this.props.project.state,
+      addresses : {token: this.props.project.token, ico: this.props.project.ico},
+      message: "",
+      messageAddressToken: "",
+      messageAddressIco: ""
+
 
     };
     
 
   }
 
+  componentDidMount(){
+    console.log(this.state.startDate)
+    //need to this the * because of differents needs between blockchain and js 
+    const t_init = new Date(this.state.startDate*1000);
+    const t_end = new Date(this.state.endDate*1000);
+
+    this.setState(
+      {
+        startDate: t_init.toLocaleDateString(),
+        endDate: t_end.toLocaleDateString()
+
+      })
+  }
+
   handleOnClick = () => {
+    if(this.state.state === 'deployed'){
+      const option = window.confirm('El proyecto ya ha sido desplegado, si continua con el proceso un nuevo smart contract sera desplegado.\n¿Desea continuar? ');
+      if(option === false){return 0;}
+    }
+    this.setState({message: 'El proceso se ha iniciado esto puede llevar unos minutos...'})
     fetch('/projects/deployProject', {
       method: 'POST',
       body: JSON.stringify(this.state.project),
@@ -25,8 +51,24 @@ export default class UserProject extends Component {
     .then(res => {
       if(res.status === 200){
       console.log(res);
-      }
-      })
+      this.setState({state: 'deployed'})
+      return res.json();
+      } 
+      }).then(addresses => { 
+
+        this.setState({addresses});
+
+        const messageAddressToken = 'El token se encuentra en la dirección: ' + this.state.addresses.token;
+        const messageAddressIco = 'El token se encuentra en la dirección: ' + this.state.addresses.ico; 
+        
+        this.setState(
+          { message: 'Tu proyecto ha sido desplegado correctamente',
+            messageAddressToken: messageAddressToken ,
+            messageAddressIco: messageAddressIco
+        });
+        
+        
+     });
     
    
   }
@@ -47,7 +89,7 @@ export default class UserProject extends Component {
           <h3>{this.props.project.name}</h3>
           <p>{this.props.project.description}</p>
           <div className="row">
-          <h5>Details</h5>
+          <h5>Detalles</h5>
           </div>
           <div className="row">
           <ul className="" >
@@ -55,12 +97,15 @@ export default class UserProject extends Component {
           </ul>
           </div>
           <div className="row">
-          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Deploy</button>
+          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Desplegar</button>
           </div>
         </div>
       </div>
       {/* /.row */}
-      <hr />
+      <hr className="my-4" />
+      <h3 style={{textAlign:'center'}}>{this.state.message}</h3>
+      <p>{this.state.messageAddressToken}</p>
+      <p>{this.state.messageAddressIco}</p>
     </div>
 
 
@@ -78,22 +123,23 @@ export default class UserProject extends Component {
           <h3>{this.props.project.name}</h3>
           <p>{this.props.project.description}</p>
           <div className="row">
-          <h5>Details</h5>
+          <h5>Detalles</h5>
           </div>
           <div className="row">
           <ul className="" >
             <li className="">Wallet: {this.props.project.wallet}</li>
             <li className="">Max ether: {this.props.project.cap}</li>
-            <li className="">Start Date: {this.state.startDate}</li>
-            <li className="">End Date: {this.state.endDate}</li>
           </ul>
           </div>
           <div className="row">
-          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Deploy</button>          </div>
+          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Desplegar</button>          </div>
         </div>
       </div>
       {/* /.row */}
-      <hr />
+      <hr className="my-4" />
+      <h3 style={{textAlign:'center'}}>{this.state.message}</h3>
+      <p>{this.state.messageAddressToken}</p>
+      <p>{this.state.messageAddressIco}</p>
     </div>
 
 
@@ -111,22 +157,25 @@ export default class UserProject extends Component {
           <h3>{this.props.project.name}</h3>
           <p>{this.props.project.description}</p>
           <div className="row">
-          <h5>Details</h5>
+          <h5>Detalles</h5>
           </div>
           <div className="row">
           <ul className="" >
             <li className="">Wallet: {this.props.project.wallet}</li>
             <li className="">Max ether: {this.props.project.cap}</li>
-            <li className="">Start Date: {this.state.startDate}</li>
-            <li className="">End Date: {this.state.endDate}</li>
+            <li className="">Fecha de comienzo: {this.state.startDate}</li>
+            <li className="">Fecha de finalización: {this.state.endDate}</li>
           </ul>
           </div>
           <div className="row">
-          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Deploy</button>          </div>
+          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Desplegar</button>          </div>
         </div>
       </div>
       {/* /.row */}
-      <hr />
+      <hr className="my-4" />
+      <h3 style={{textAlign:'center'}}>{this.state.message}</h3>
+      <p>{this.state.messageAddressToken}</p>
+      <p>{this.state.messageAddressIco}</p>
     </div>
 
 
@@ -144,22 +193,25 @@ export default class UserProject extends Component {
           <h3>{this.props.project.name}</h3>
           <p>{this.props.project.description}</p>
           <div className="row">
-          <h5>Details</h5>
+          <h5>Detalles</h5>
           </div>
           <div className="row">
           <ul className="" >
             <li className="">Wallet: {this.props.project.wallet}</li>
             <li className="">Number of tokens: {this.props.project.cap}</li>
-            <li className="">Start Date: {this.props.project.t_init}</li>
-            <li className="">End Date: {this.props.project.t_end}</li>
+            <li className="">Fecha de comienzo: {this.props.project.t_init}</li>
+            <li className="">Fecha de finalización: {this.props.project.t_end}</li>
           </ul>
           </div>
           <div className="row">
-          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Deploy</button>          </div>
+          <button className="btn  btn-primary " onClick={ () => this.handleOnClick()} >Desplegar</button>          </div>
         </div>
       </div>
       {/* /.row */}
-      <hr />
+      <hr className="my-4" />
+      <h3 style={{textAlign:'center'}}>{this.state.message}</h3>
+      <p>{this.state.messageAddressToken}</p>
+      <p>{this.state.messageAddressIco}</p>
     </div>
 
 
@@ -176,7 +228,7 @@ export default class UserProject extends Component {
       <div className="col-md-7">
         <h3>{this.props.project.name}</h3>
         <p>{this.props.project.description}</p>
-        <button className="btn  btn-primary " >Deploy</button>
+        <button className="btn  btn-primary " >Desplegar</button>
       </div>
     </div>
     {/* /.row */}

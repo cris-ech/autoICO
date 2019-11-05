@@ -8,11 +8,13 @@ export default class UserProject extends Component {
     super(props)
     this.state = {
       project: this.props.project,
-      startDate :  Date(this.props.project.t_init),
-      endDate :  Date(this.props.project.t_end),
+      startDate: this.props.project.t_init,
+      endDate: this.props.project.t_end,
       value : 1,
       icoAddress : this.props.project.icoAddress,
       tokenAddress : this.props.project.tokenAddress,
+      nTokens: this.props.nTokens,
+      tokensValue: this.props.tokensValue,
       accounts: []
 
 
@@ -22,7 +24,6 @@ export default class UserProject extends Component {
   }
 
   onSubmit = (event) => {
-    if(web3 != null){
     event.preventDefault();
     web3.eth.sendTransaction({to:this.state.icoAddress,
       from: this.state.accounts[0], 
@@ -30,7 +31,7 @@ export default class UserProject extends Component {
       ,function (err, res){
         console.log(res);
       });
-    }
+    
    
   }
 
@@ -47,6 +48,15 @@ export default class UserProject extends Component {
 
     this.setState({ accounts });
     }
+    const t_init = new Date(this.state.startDate*1000);
+    const t_end = new Date(this.state.endDate*1000);
+
+    this.setState(
+      {
+        startDate: t_init.toLocaleDateString(),
+        endDate: t_end.toLocaleDateString()
+
+      })
   }
 
   render(){
@@ -69,10 +79,10 @@ export default class UserProject extends Component {
           <div className="row">
           <form className="form" onSubmit={this.onSubmit}>
           <div className="form-label-group">
-           <input type="number" name="value" id="inputNumberTokens" className="form-control" placeholder="ether" defaultValue={1} required onChange={this.handleInputChange} />
-           <label htmlFor="inputNumberTokens">Max ether</label>
+           <input type="number" name="value" id="inputNumberTokens" className="form-control" placeholder="ether" step={0.01} min={0.01} defaultValue={1} required onChange={this.handleInputChange} />
+           <label htmlFor="inputNumberTokens">Ether</label>
            </div>
-          <button className="btn  btn-primary " type="submit" >Buy</button>
+          <button className="btn  btn-primary " type="submit" >Comprar</button>
           </form>
           </div>
         </div>
@@ -96,20 +106,21 @@ export default class UserProject extends Component {
           <h3>{this.props.project.name}</h3>
           <p>{this.props.project.description}</p>
           <div className="row">
-          <h5>Details</h5>
+          <h5>Detalles</h5>
           </div>
           <div className="row">
           <ul className="" >
-            <li className="">Max ether: {this.props.project.cap}</li>
+            <li className="">Hard cap: {this.props.project.cap}</li>
+            <li className="">Precio de cada token: {this.props.project.tokensValue} ether</li>
+            <li className="">Número maximo de tokens: {this.props.project.nTokens}</li>
           </ul>
           </div>
           <div className="row">
           <form className="form" onSubmit={this.onSubmit}>
           <div className="form-label-group">
-           <input type="number" name="value" id="inputNumberTokens" className="form-control" placeholder="ether" defaultValue={1} required onChange={this.handleInputChange} />
-           <label htmlFor="inputNumberTokens">Ether</label>
+          <input type="number" name="value" id="inputNumberTokens" className="form-control" placeholder="ether" step={0.01} min={0.01} defaultValue={1} required onChange={this.handleInputChange} />           <label htmlFor="inputNumberTokens">Ether</label>
            </div>
-          <button className="btn  btn-primary " type="submit" >Buy</button>
+          <button className="btn  btn-primary " type="submit" >Comprar</button>
           </form>          </div>
         </div>
       </div>
@@ -132,22 +143,23 @@ export default class UserProject extends Component {
           <h3>{this.props.project.name}</h3>
           <p>{this.props.project.description}</p>
           <div className="row">
-          <h5>Details</h5>
+          <h5>Detalles</h5>
           </div>
           <div className="row">
           <ul className="" >
-            <li className="">Max ether: {this.props.project.cap}</li>
-            <li className="">Start Date: {this.state.startDate}</li>
-            <li className="">End Date: {this.state.endDate}</li>
+            <li className="">Hard cap: {this.props.project.cap}</li>
+            <li className="">Precio de cada token: {this.props.project.tokensValue} ether</li>
+            <li className="">Número maximo de tokens: {this.props.project.nTokens}</li>
+            <li className="">Fecha de comienzo: {this.state.startDate}</li>
+            <li className="">Fecha de finalización: {this.state.endDate}</li>
           </ul>
           </div>
           <div className="row">
           <form className="form" onSubmit={this.onSubmit}>
           <div className="form-label-group">
-           <input type="number" name="value" id="inputNumberTokens" className="form-control" placeholder="ether" defaultValue={1} required onChange={this.handleInputChange} />
-           <label htmlFor="inputNumberTokens">Ether </label>
+          <input type="number" name="value" id="inputNumberTokens" className="form-control" placeholder="ether" step={0.01} min={0.01} defaultValue={1} required onChange={this.handleInputChange} />           <label htmlFor="inputNumberTokens">Ether </label>
            </div>
-          <button className="btn  btn-primary " type="submit" >Buy</button>
+          <button className="btn  btn-primary " type="submit" >Comprar</button>
           </form>          </div>
         </div>
       </div>
@@ -170,22 +182,23 @@ export default class UserProject extends Component {
           <h3>{this.props.project.name}</h3>
           <p>{this.props.project.description}</p>
           <div className="row">
-          <h5>Details</h5>
+          <h5>Detalles</h5>
           </div>
           <div className="row">
           <ul className="" >
-            <li className="">Max ether: {this.props.project.cap}</li>
-            <li className="">Start Date: {this.state.startDate}</li>
-            <li className="">End Date: {this.state.endDate}</li>
+            <li className="">Hard cap: {this.props.project.cap}</li>
+            <li className="">Precio de cada token: {this.props.project.tokensValue} ether</li>
+            <li className="">Número maximo de tokens: {this.props.project.nTokens}</li>
+            <li className="">Fecha de comienzo: {this.state.startDate}</li>
+            <li className="">Fecha de finalización: {this.state.endDate}</li>
           </ul>
           </div>
           <div className="row">
           <form className="form" onSubmit={this.onSubmit}>
           <div className="form-label-group">
-           <input type="number" name="value" id="inputNumberTokens" className="form-control" placeholder="ether" defaultValue={1} required onChange={this.handleInputChange} />
-           <label htmlFor="inputNumberTokens">Ether </label>
+          <input type="number" name="value" id="inputNumberTokens" className="form-control" placeholder="ether" step={0.01} min={0.01} defaultValue={1} required onChange={this.handleInputChange} />           <label htmlFor="inputNumberTokens">Ether </label>
            </div>
-          <button className="btn  btn-primary " type="submit" >Buy</button>
+          <button className="btn  btn-primary " type="submit" >Comprar</button>
           </form>          </div>
         </div>
       </div>
@@ -212,7 +225,7 @@ export default class UserProject extends Component {
            <input type="number" name="value" id="inputNumberTokens" className="form-control" placeholder="ether" defaultValue={1} required onChange={this.handleInputChange} />
            <label htmlFor="inputNumberTokens">Ether</label>
            </div>
-          <button className="btn  btn-primary " type="submit" >Buy</button>
+          <button className="btn  btn-primary " type="submit" >Comprar</button>
           </form>      </div>
     </div>
     {/* /.row */}

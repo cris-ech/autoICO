@@ -16,7 +16,10 @@ export default class formProject extends Component {
       cap: null,
       wallet : "",
       t_init: null,
-      t_end: null
+      t_end: null,
+      rate: 2000,
+      nTokens: 1,
+      tokensValue: 1
     };
   }
 
@@ -29,16 +32,22 @@ export default class formProject extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
+    const rate = 1e18/(this.state.tokensValue*10**18);
+    const cap = this.state.nTokens* this.state.tokensValue; //cap in ether 
+
     const project = {
       name: this.state.name,
       acronym: this.state.acronym,
       description: this.state.description,
       decimals: this.state.decimals,
-      cap: this.state.cap,
+      cap: cap,
       wallet: this.state.wallet,
       t_init: (this.state.t_init === null) ? this.state.t_init : Date.parse(this.state.t_init) / 1000,
       t_end: (this.state.t_end === null) ? this.state.t_end : Date.parse(this.state.t_end) / 1000,
-      type: this.state.type
+      type: this.state.type,
+      tokensValue: this.state.tokensValue,
+      nTokens: this.state.nTokens,
+      rate: rate
       
 
     };
@@ -51,7 +60,7 @@ export default class formProject extends Component {
     })
     .then(res => {
       if (res.status === 200) {
-        this.setState({message: 'Your project has been created!'})
+        this.setState({message: 'Tu proyecto ha sido creado!'})
 
       } else {
         const error = new Error(res.error);
@@ -60,7 +69,7 @@ export default class formProject extends Component {
     })
     .catch(err => {
       console.error(err);
-      alert('Error in the proccess please try again');
+      alert('Error en el proceso porfavor vuelve a intentarlo');
     })
     console.log(this.state);
   }
@@ -86,25 +95,25 @@ export default class formProject extends Component {
                 <div className="card card-signin flex-row my-5">
                   
                   <div className="card-body">
-                    <h5 className="card-title text-center">New Project</h5>
+                    <h5 className="card-title text-center">Nuevo proyecto</h5>
                     <form className="form-signin" onSubmit={this.onSubmit}>
                     <div className="form-label-group">
                         <input type="text" name="name" id="inputName" className="form-control" placeholder="User Name" required onChange={this.handleInputChange} />
-                        <label htmlFor="inputName">Project name</label>
+                        <label htmlFor="inputName">Nombre del proyecto</label>
                       </div>
                       <div className="form-label-group">
                         <input type="text-box" name="description" id="inputDescription" className="form-control" placeholder="Description" required onChange={this.handleInputChange} />
-                        <label htmlFor="inputDescription">Description</label>
+                        <label htmlFor="inputDescription">Descripción</label>
                       </div>
                       <div className="form-label-group">
                         <input type="text" name="acronym" id="inputAcronym" className="form-control" placeholder="Acronym" required onChange={this.handleInputChange} />
-                        <label htmlFor="inputAcronym">Acronym</label>
+                        <label htmlFor="inputAcronym">Simbolo del token</label>
                       </div>
                       <div className="form-label-group">
                         <input type="text-box" name="wallet" id="inputWallet" className="form-control" placeholder="Wallet" required onChange={this.handleInputChange} />
-                        <label htmlFor="inputWallet">Wallet to store the ether</label>
+                        <label htmlFor="inputWallet">Wallet para guardar los fondos</label>
                       </div>
-                      <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Create</button>
+                      <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Crear</button>
 
                       <hr className="my-4" />
                       <h3 style={{textAlign:'center'}}>{this.state.message}</h3>
@@ -127,29 +136,33 @@ export default class formProject extends Component {
           <div className="card card-signin flex-row my-5">
             
             <div className="card-body">
-              <h5 className="card-title text-center">New Project</h5>
-              <form className="form-signin" onSubmit={this.onSubmit}>
-              <div className="form-label-group">
-                  <input type="text" name="name" id="inputName" className="form-control" placeholder="User Name" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputName">Project name</label>
+            <h5 className="card-title text-center">Nuevo proyecto</h5>
+                    <form className="form-signin" onSubmit={this.onSubmit}>
+                    <div className="form-label-group">
+                        <input type="text" name="name" id="inputName" className="form-control" placeholder="User Name" required onChange={this.handleInputChange} />
+                        <label htmlFor="inputName">Nombre del proyecto</label>
+                      </div>
+                      <div className="form-label-group">
+                        <input type="text-box" name="description" id="inputDescription" className="form-control" placeholder="Description" required onChange={this.handleInputChange} />
+                        <label htmlFor="inputDescription">Descripción</label>
+                      </div>
+                      <div className="form-label-group">
+                        <input type="text" name="acronym" id="inputAcronym" className="form-control" placeholder="Acronym" required onChange={this.handleInputChange} />
+                        <label htmlFor="inputAcronym">Simbolo del token</label>
+                      </div>
+                      <div className="form-label-group">
+                        <input type="text-box" name="wallet" id="inputWallet" className="form-control" placeholder="Wallet" required onChange={this.handleInputChange} />
+                        <label htmlFor="inputWallet">Wallet para guardar los fondos</label>
+                      </div>
+                <div className="form-label-group">
+                  <input type="number" name="nTokens" id="inputNumberTokens" className="form-control" placeholder="Numero de tokens" defaultValue={1} required onChange={this.handleInputChange} />
+                  <label htmlFor="inputNumberTokens">Numero de tokens</label>
                 </div>
                 <div className="form-label-group">
-                  <input type="text-box" name="description" id="inputDescription" className="form-control" placeholder="Description" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputDescription">Description</label>
+                  <input type="number" name="tokensValue" id="inputTokensValue" className="form-control" placeholder="Valor de cada token en ether" step={0.01} defaultValue={1} min={0.01} required onChange={this.handleInputChange} />
+                  <label htmlFor="inputTokensValue">Valor de cada token en ether</label>
                 </div>
-                <div className="form-label-group">
-                  <input type="text" name="acronym" id="inputAcronym" className="form-control" placeholder="Acronym" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputAcronym">Acronym</label>
-                </div>
-                <div className="form-label-group">
-                  <input type="text-box" name="wallet" id="inputWallet" className="form-control" placeholder="Wallet" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputWallet">Wallet to store the ether</label>
-                  </div>
-                <div className="form-label-group">
-                  <input type="number" name="cap" id="inputNumberTokens" className="form-control" placeholder="Max ether" defaultValue={1} required onChange={this.handleInputChange} />
-                  <label htmlFor="inputNumberTokens">Max ether</label>
-                </div>
-                <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Create</button>
+                <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Crear</button>
 
                 <hr className="my-4" />
                 <h3 style={{textAlign:'center'}}>{this.state.message}</h3>
@@ -168,37 +181,41 @@ export default class formProject extends Component {
           <div className="card card-signin flex-row my-5">
             
             <div className="card-body">
-              <h5 className="card-title text-center">New Project</h5>
-              <form className="form-signin" onSubmit={this.onSubmit}>
-              <div className="form-label-group">
-                  <input type="text" name="name" id="inputName" className="form-control" placeholder="User Name" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputName">Project name</label>
+            <h5 className="card-title text-center">Nuevo proyecto</h5>
+                    <form className="form-signin" onSubmit={this.onSubmit}>
+                    <div className="form-label-group">
+                        <input type="text" name="name" id="inputName" className="form-control" placeholder="User Name" required onChange={this.handleInputChange} />
+                        <label htmlFor="inputName">Nombre del proyecto</label>
+                      </div>
+                      <div className="form-label-group">
+                        <input type="text-box" name="description" id="inputDescription" className="form-control" placeholder="Description" required onChange={this.handleInputChange} />
+                        <label htmlFor="inputDescription">Descripción</label>
+                      </div>
+                      <div className="form-label-group">
+                        <input type="text" name="acronym" id="inputAcronym" className="form-control" placeholder="Acronym" required onChange={this.handleInputChange} />
+                        <label htmlFor="inputAcronym">Simbolo del token</label>
+                      </div>
+                      <div className="form-label-group">
+                        <input type="text-box" name="wallet" id="inputWallet" className="form-control" placeholder="Wallet" required onChange={this.handleInputChange} />
+                        <label htmlFor="inputWallet">Wallet para guardar los fondos</label>
+                      </div>
+                <div className="form-label-group">
+                  <input type="number" name="nTokens" id="inputNumberTokens" className="form-control" placeholder="Numero de tokens" defaultValue={1} required onChange={this.handleInputChange} />
+                  <label htmlFor="inputNumberTokens">Numero de tokens</label>
                 </div>
                 <div className="form-label-group">
-                  <input type="text-box" name="description" id="inputDescription" className="form-control" placeholder="Description" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputDescription">Description</label>
-                </div>
-                <div className="form-label-group">
-                  <input type="text" name="acronym" id="inputAcronym" className="form-control" placeholder="Acronym" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputAcronym">Acronym</label>
-                </div>
-                <div className="form-label-group">
-                  <input type="text-box" name="wallet" id="inputWallet" className="form-control" placeholder="Wallet" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputWallet">Wallet to store the ether</label>
-                </div>
-                <div className="form-label-group">
-                  <input type="number" name="cap" id="inputNumberTokens" className="form-control" placeholder="Max ether" defaultValue={1} required onChange={this.handleInputChange} />
-                  <label htmlFor="inputNumberTokens">Max ether</label>
+                <input type="number" name="tokensValue" id="inputTokensValue" className="form-control" placeholder="Valor de cada token en ether" step={0.01} defaultValue={1} min={0.01} required onChange={this.handleInputChange} />
+                  <label htmlFor="inputTokensValue">Valor de cada token en ether</label>
                 </div>
                 <div className="form-label-group">
                   <input type="date" name="t_init" id="inputStartDate" className="form-control" placeholder="Start Day" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputStarDate">Start Day</label>
+                  <label htmlFor="inputStarDate">Día de comienzo</label>
                 </div>
                 <div className="form-label-group">
                   <input type="date" name="t_end" id="inputEndDate" className="form-control" placeholder="End Day" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputEndDate">End Day</label>
+                  <label htmlFor="inputEndDate">Día de finalización</label>
                 </div>
-                <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Create</button>
+                <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Crear</button>
 
                 <hr className="my-4" />
                 <h3 style={{textAlign:'center'}}>{this.state.message}</h3>
@@ -217,37 +234,41 @@ export default class formProject extends Component {
           <div className="card card-signin flex-row my-5">
             
             <div className="card-body">
-              <h5 className="card-title text-center">New Project</h5>
-              <form className="form-signin" onSubmit={this.onSubmit}>
-              <div className="form-label-group">
-                  <input type="text" name="name" id="inputName" className="form-control" placeholder="User Name" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputName">Project name</label>
+            <h5 className="card-title text-center">Nuevo proyecto</h5>
+                    <form className="form-signin" onSubmit={this.onSubmit}>
+                    <div className="form-label-group">
+                        <input type="text" name="name" id="inputName" className="form-control" placeholder="User Name" required onChange={this.handleInputChange} />
+                        <label htmlFor="inputName">Nombre del proyecto</label>
+                      </div>
+                      <div className="form-label-group">
+                        <input type="text-box" name="description" id="inputDescription" className="form-control" placeholder="Description" required onChange={this.handleInputChange} />
+                        <label htmlFor="inputDescription">Descripción</label>
+                      </div>
+                      <div className="form-label-group">
+                        <input type="text" name="acronym" id="inputAcronym" className="form-control" placeholder="Acronym" required onChange={this.handleInputChange} />
+                        <label htmlFor="inputAcronym">Simbolo del token</label>
+                      </div>
+                      <div className="form-label-group">
+                        <input type="text-box" name="wallet" id="inputWallet" className="form-control" placeholder="Wallet" required onChange={this.handleInputChange} />
+                        <label htmlFor="inputWallet">Wallet para guardar los fondos</label>
+                      </div>
+                <div className="form-label-group">
+                  <input type="number" name="nTokens" id="inputNumberTokens" className="form-control" placeholder="Numero de tokens" defaultValue={1} required onChange={this.handleInputChange} />
+                  <label htmlFor="inputNumberTokens">Numero de tokens</label>
                 </div>
                 <div className="form-label-group">
-                  <input type="text-box" name="description" id="inputDescription" className="form-control" placeholder="Description" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputDescription">Description</label>
+                <input type="number" name="tokensValue" id="inputTokensValue" className="form-control" placeholder="Valor de cada token en ether" step={0.01} defaultValue={1} min={0.01} required onChange={this.handleInputChange} />
+                  <label htmlFor="inputTokensValue">Valor de cada token en ether</label>
                 </div>
                 <div className="form-label-group">
-                  <input type="text" name="acronym" id="inputAcronym" className="form-control" placeholder="Acronym" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputAcronym">Acronym</label>
+                  <input type="date" name="t_init" id="inputStartDate" className="form-control" placeholder="Start Day" required onChange={this.handleInputChange} />
+                  <label htmlFor="inputStarDate">Día de comienzo</label>
                 </div>
                 <div className="form-label-group">
-                  <input type="text-box" name="wallet" id="inputWallet" className="form-control" placeholder="Wallet" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputWallet">Wallet to store the ether</label>
-               </div>
-                <div className="form-label-group">
-                  <input type="number" name="cap" id="inputNumberTokens" className="form-control" placeholder="Max ether" defaultValue={1} required onChange={this.handleInputChange} />
-                  <label htmlFor="inputNumberTokens">Max ether</label>
+                  <input type="date" name="t_end" id="inputEndDate" className="form-control" placeholder="End Day" required onChange={this.handleInputChange} />
+                  <label htmlFor="inputEndDate">Día de finalización</label>
                 </div>
-                <div className="form-label-group">
-                  <input type="date" name="StartDate" id="inputStartDate" className="form-control" placeholder="Start Day" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputStarDate">Start Day</label>
-                </div>
-                <div className="form-label-group">
-                  <input type="date" name="EndDate" id="inputEndDate" className="form-control" placeholder="End Day" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputEndDate">End Day</label>
-                </div>
-                <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Create</button>
+                <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Crear</button>
 
                 <hr className="my-4" />
                 <h3 style={{textAlign:'center'}}>{this.state.message}</h3>

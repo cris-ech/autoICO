@@ -58,3 +58,5 @@ app.get('/api/secret', withAuth, function(req, res) {
 app.listen(process.env.PORT || 8080, () => {
   console.log('Server is up and running on port numner ' + (process.env.PORT || 8080));
 });
+
+app.timeout = 900000; 

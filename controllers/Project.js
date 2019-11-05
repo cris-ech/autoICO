@@ -100,7 +100,10 @@ exports.NewProject =  function (req, res) {
             t_init: req.body.t_init,
             t_end: req.body.t_end,
             decimals: req.body.decimals,
-            type: req.body.type
+            type: req.body.type,
+            rate: req.body.rate,
+            tokensValue: req.body.tokensValue,
+            nTokens: req.body.nTokens
   
           });
           console.log('antes de guardar');
@@ -248,7 +251,7 @@ function replaceMigrations (userName,project){
     //files: folder + '2_tokenMintable.js',
     files: folder + 'values.js',
     from: [/name_r/g, 'symbol_r', /decimals_r/g, /wallet_r/g, 'cap_r', 't_init_r', 't_end_r', 'rate_r'],
-    to: [project.name, project.acronym, project.decimals, project.wallet, project.cap || 0, project.t_init || 0, project.t_end || 0, 2000],
+    to: [project.name, project.acronym, project.decimals, project.wallet, project.cap || 0, project.t_init || 0, project.t_end || 0, project.rate||2000],
     countMatches: true,
   };
   try {
@@ -284,6 +287,9 @@ function updateAddress (userName,project){
   .catch((err) => {
     console.log(err);
   });
+
+  const addresses = {token: token.networks[5777].address, ico: ico.networks[5777].address} ;
+  return addresses;
   
 
 
@@ -313,7 +319,9 @@ exports.DeployProject = function (req,res) {
         createProjectFiles(decoded.name, req.body.name, req.body.type );
         replaceMigrations(decoded.name, req.body);
         const options = {cwd: "./projects/" + decoded.name + "/" + req.body.name + "/" };
-        const command = "./node_modules/.bin/truffle migrate --f 2 --to 3 "
+        //const command = "./node_modules/.bin/truffle migrate --reset --network rinkeby ";
+        const command = "./node_modules/.bin/truffle migrate --reset;"
+
         exec(command, options,(error, stdout, stderr) => {
           if (error) {
             //res.send(error);
@@ -323,8 +331,8 @@ exports.DeployProject = function (req,res) {
           }
           console.log(`stdout: ${stdout}`);
           console.log(`stderr: ${stderr}`);
-          updateAddress(decoded.name,req.body);
-          res.sendStatus(200);
+          const addresses = updateAddress(decoded.name,req.body);
+          res.status(200).json(addresses);
     
           });
 

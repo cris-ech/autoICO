@@ -25,19 +25,19 @@ export default class Navbar extends Component {
             <Link className="nav-link" to="/">Home</Link>
             </li>
             <li className="nav-item">
-            <Link className="nav-link" to="/all-projects">Projects</Link>
+            <Link className="nav-link" to="/all-projects">ICO's</Link>
             </li>
             <li className="nav-item">
-            <Link className="nav-link" to="/register">Register</Link>
+            <Link className="nav-link" to="/register">Registro</Link>
             </li>
             <li className="nav-item">
             <Link className="nav-link" to="/login">Login</Link>
             </li>
             <li className="nav-item">
-            <Link className="nav-link" to="/project">Create</Link>
+            <Link className="nav-link" to="/project">Crear</Link>
             </li>
             <li className="nav-item">
-            <Link className="nav-link" to="/user-projects">My projects</Link>
+            <Link className="nav-link" to="/user-projects">Mis proyectos</Link>
             </li>
             <Logout></Logout>
           </ul>

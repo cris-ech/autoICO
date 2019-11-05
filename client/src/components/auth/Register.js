@@ -40,7 +40,7 @@ export default class Register extends Component {
     })
     .then(res => {
       if (res.status === 200) {
-        this.setState({message: 'Your registration is complete !'})
+        this.setState({message: 'Tu registro se ha realizado correctamente!'})
 
       } else {
         const error = new Error(res.error);
@@ -49,7 +49,7 @@ export default class Register extends Component {
     })
     .catch(err => {
       console.error(err);
-      alert('Error in register please try again');
+      alert('Error en el proceso vuelva a intentarlo');
     })
     console.log(this.state);
   }
@@ -63,26 +63,26 @@ export default class Register extends Component {
           <div className="card card-signin flex-row my-5">
             
             <div className="card-body">
-              <h5 className="card-title text-center">Register</h5>
+              <h5 className="card-title text-center">Registro</h5>
               <form className="form-signin" onSubmit={this.onSubmit}>
               <div className="form-label-group">
                   <input type="text" name="name" id="inputName" className="form-control" placeholder="User Name" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputName">User Name</label>
+                  <label htmlFor="inputName">Nombre</label>
                 </div>
                 <div className="form-label-group">
                   <input type="email" name="email" id="inputEmail" className="form-control" placeholder="Email address" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputEmail">Email address</label>
+                  <label htmlFor="inputEmail">Email</label>
                 </div>
                 <hr />
                 <div className="form-label-group">
                   <input type="password" name="password" id="inputPassword" className="form-control" placeholder="Password" required onChange={this.handleInputChange} minLength="6" />
-                  <label htmlFor="inputPassword">Password</label>
+                  <label htmlFor="inputPassword">Contraseña</label>
                 </div>
                 <div className="form-label-group">
                   <input type="password" name="password2" id="inputConfirmPassword" className="form-control" placeholder="Password" required onChange={this.handleInputChange} minLength="6" />
-                  <label htmlFor="inputConfirmPassword">Confirm password</label>
+                  <label htmlFor="inputConfirmPassword">Confirmar contraseña</label>
                 </div>
-                <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+                <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Continuar</button>
 
                 <hr className="my-4" />
                 <h3 style={{textAlign:'center'}}>{this.state.message}</h3>

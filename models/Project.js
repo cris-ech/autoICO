@@ -53,6 +53,16 @@ const ProjectSchema = new Schema({
     default: null,
     required: false
   },
+  tokensValue: {
+    type: Number,
+    default: null,
+    required: false
+  },
+  nTokens: {
+    type: Number,
+    default: null,
+    required: false
+  },
   type: {
     type: Number,
     required: true

@@ -53,12 +53,12 @@ export default class Login extends Component {
               <form className="form-signin" onSubmit={this.onSubmit}>
                 <div className="form-label-group">
                   <input type="email" name="email" id="inputEmail" className="form-control" placeholder="Email address" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputEmail">Email address</label>
+                  <label htmlFor="inputEmail">Email</label>
                 </div>
                 <hr />
                 <div className="form-label-group">
                   <input type="password" name="password" id="inputPassword" className="form-control" placeholder="Password" required onChange={this.handleInputChange} />
-                  <label htmlFor="inputPassword">Password</label>
+                  <label htmlFor="inputPassword">Contraseña</label>
                 </div>
                 <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Login</button>
 
