@@ -103,7 +103,7 @@ export default class Project extends Component {
   <div className="container">
     <div className="row">
       {/* Free Tier */}
-      <div className="col-5 offset-1" style={{paddingBottom: "20px"}}>
+      <div className="col " style={{paddingBottom: "20px"}}>
         <div className="card ">
           <div className="card-body">
             <h5 className="card-title text-muted text-uppercase text-center">Basic</h5>
@@ -122,7 +122,7 @@ export default class Project extends Component {
         </div>
       </div>
       {/* Plus Tier */}
-      <div className="col-5" style={{paddingBottom: "20px"}}>
+      <div className="col" style={{paddingBottom: "20px"}}>
         <div className="card ">
           <div className="card-body">
             <h5 className="card-title text-muted text-uppercase text-center">Advanced</h5>
@@ -142,7 +142,7 @@ export default class Project extends Component {
       </div>
       <div className="row"  style={{paddingBottom: "20px"}}>
       {/* Free Tier */}
-      <div className="col-5 offset-1" style={{paddingBottom: "20px"}}>
+      <div className="col" style={{paddingBottom: "20px"}}>
         <div className="card ">
           <div className="card-body">
             <h5 className="card-title text-muted text-uppercase text-center">Plus</h5>
@@ -160,7 +160,7 @@ export default class Project extends Component {
         </div>
       </div>
       {/* Free Tier */}
-      <div className="col-5" style={{paddingBottom: "20px"}}>
+      <div className="col" style={{paddingBottom: "20px"}}>
         <div className="card">
           <div className="card-body">
             <h5 className="card-title text-muted text-uppercase text-center">Pro</h5>

@@ -17,7 +17,8 @@ export default class Header extends Component {
     || window.location.pathname==='/login' 
     || window.location.pathname==='/project'
     || window.location.pathname==='/user-projects'
-    || window.location.pathname==='/all-projects'){
+    || window.location.pathname==='/all-projects'
+    || window.location.pathname==='/guide'){
       return <div style={{paddingBottom: '67px'}}></div>;
     }
     return (
