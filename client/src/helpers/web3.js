@@ -13,7 +13,8 @@ import Web3 from 'web3';
       console.log(web3);
       
   } else {
-      alert('You have to install MetaMask to be able to access to all the functions!');
+
+      //alert('You have to install MetaMask to be able to access to all the functions!');
       web3 = null ;
   }
 

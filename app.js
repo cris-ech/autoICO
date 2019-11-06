@@ -54,6 +54,12 @@ app.get('/api/secret', withAuth, function(req, res) {
   res.send('The password is potato');
 });
 
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+
 
 app.listen(process.env.PORT || 8080, () => {
   console.log('Server is up and running on port numner ' + (process.env.PORT || 8080));

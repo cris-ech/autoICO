@@ -54,8 +54,10 @@ export default class formProject extends Component {
   // process to create a new project
   onSubmit = (event) => {
     event.preventDefault();
-    const rate = 1e18/(this.state.tokensValue*10**18);
-    const cap = this.state.nTokens* this.state.tokensValue; //cap in ether 
+    if(this.state.type != 1){
+    var rate = 1e18/(this.state.tokensValue*10**18);
+    var cap = this.state.nTokens* this.state.tokensValue; //cap in ether 
+    }
 
     const project = {
       name: this.state.name,

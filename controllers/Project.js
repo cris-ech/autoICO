@@ -289,6 +289,7 @@ function updateAddress (userName,project){
   });
 
   const addresses = {token: token.networks[5777].address, ico: ico.networks[5777].address} ;
+  //const addresses = {token: token.networks[4].address, ico: ico.networks[4].address} ;
   return addresses;
   
 
