@@ -54,10 +54,11 @@ export default class Project extends Component {
     //.current is verification that your element has rendered
     this.setState({ 
       type: type, 
-      visibility: " "
-    }); 
-    this.setState({myDivToFocus: React.createRef()})
-    prueba(this.state.myDivToFocus);
+      visibility: " ",
+      myDivToFocus: React.createRef()
+    }, () => prueba(this.state.myDivToFocus)); 
+    //this.setState({myDivToFocus: React.createRef()})
+    //prueba(this.state.myDivToFocus);
 
 }
 
@@ -112,7 +113,7 @@ export default class Project extends Component {
             <ul className="fa-ul">
               <li><span className="fa-li"><i className="fas fa-check" /></span>Nombre del token</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Simbolo del token</li>
-              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Max amount of ether</li>
+              <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Limite de ether</li>
               <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Limite de tiempo</li>
               <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Lista de acceso</li>
              
@@ -131,7 +132,7 @@ export default class Project extends Component {
             <ul className="fa-ul">
               <li><span className="fa-li"><i className="fas fa-check" /></span>Nombre del token</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Simbolo del token</li>
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Max amount of ether</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Limite de ether</li>
               <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Limite de tiempo</li>
               <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Lista de acceso</li>
             </ul>
@@ -151,7 +152,7 @@ export default class Project extends Component {
             <ul className="fa-ul">
               <li><span className="fa-li"><i className="fas fa-check" /></span>Nombre del token</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Simbolo del token</li>
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Max amount of ether</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Limite de ether</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Limite de tiempo</li>
               <li className="text-muted"><span className="fa-li"><i className="fas fa-times" /></span>Lista de acceso</li>
             </ul>
@@ -169,7 +170,7 @@ export default class Project extends Component {
             <ul className="fa-ul">
               <li><span className="fa-li"><i className="fas fa-check" /></span>Nombre del token</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Simbolo del token</li>
-              <li><span className="fa-li"><i className="fas fa-check" /></span>Max amount of ether</li>
+              <li><span className="fa-li"><i className="fas fa-check" /></span>Limite de ether</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Limite de tiempo</li>
               <li><span className="fa-li"><i className="fas fa-check" /></span>Lista de acceso</li>
             </ul>

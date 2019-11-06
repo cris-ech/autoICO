@@ -30,7 +30,7 @@ export default class Header extends Component {
           <p>{this.state.hidden}</p>
           <h2 className="masthead-subheading mb-0">Sin dificultades, Sin programacion</h2>
           <h3>AUTOICO</h3>
-          <a href="register" className="btn btn-primary btn-xl rounded-pill mt-5">Pruebalo</a>
+          <a href="guide" className="btn btn-primary btn-xl rounded-pill mt-5">Pruebalo</a>
         </div>
       </div>
       {/*

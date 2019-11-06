@@ -18,18 +18,40 @@ export default class formProject extends Component {
       t_init: null,
       t_end: null,
       rate: 2000,
+      minStart:'',
+      minEnd:'',
       nTokens: 1,
-      tokensValue: 1
+      tokensValue: 0.0005
     };
   }
 
   handleInputChange = (event) => {
     const { value, name } = event.target;
+    if(name == 't_init' ){ //change the minEnd based on the start date
     this.setState({
       [name]: value
-    });
+    }, () => {console.log(this.state.t_init);
+      let minEnd = new Date(this.state.t_init)
+      console.log(minEnd);
+      minEnd.setDate(minEnd.getDate() + 1);
+      this.setState({minEnd: minEnd.toISOString().split('T')[0]});
+      console.log(minEnd)});
+    }else{
+      this.setState({
+        [name]: value
+      });
+    }
   };
 
+
+
+  componentDidMount(){
+    let tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    this.setState({minStart: tomorrow.toISOString().split('T')[0]});
+  }
+
+  // process to create a new project
   onSubmit = (event) => {
     event.preventDefault();
     const rate = 1e18/(this.state.tokensValue*10**18);
@@ -48,6 +70,7 @@ export default class formProject extends Component {
       tokensValue: this.state.tokensValue,
       nTokens: this.state.nTokens,
       rate: rate
+
       
 
     };
@@ -208,11 +231,11 @@ export default class formProject extends Component {
                   <label htmlFor="inputTokensValue">Valor de cada token en ether</label>
                 </div>
                 <div className="form-label-group">
-                  <input type="date" name="t_init" id="inputStartDate" className="form-control" placeholder="Start Day" required onChange={this.handleInputChange} />
+                  <input type="date" name="t_init" id="inputStartDate" className="form-control" placeholder="Start Day" min={this.state.minStart} required onChange={this.handleInputChange} />
                   <label htmlFor="inputStarDate">Día de comienzo</label>
                 </div>
                 <div className="form-label-group">
-                  <input type="date" name="t_end" id="inputEndDate" className="form-control" placeholder="End Day" required onChange={this.handleInputChange} />
+                  <input type="date" name="t_end" id="inputEndDate" className="form-control" placeholder="End Day" min={this.state.minEnd} required onChange={this.handleInputChange} />
                   <label htmlFor="inputEndDate">Día de finalización</label>
                 </div>
                 <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Crear</button>
@@ -261,11 +284,11 @@ export default class formProject extends Component {
                   <label htmlFor="inputTokensValue">Valor de cada token en ether</label>
                 </div>
                 <div className="form-label-group">
-                  <input type="date" name="t_init" id="inputStartDate" className="form-control" placeholder="Start Day" required onChange={this.handleInputChange} />
+                  <input type="date" name="t_init" id="inputStartDate" className="form-control" placeholder="Start Day" min={this.state.minStart} required onChange={this.handleInputChange} />
                   <label htmlFor="inputStarDate">Día de comienzo</label>
                 </div>
                 <div className="form-label-group">
-                  <input type="date" name="t_end" id="inputEndDate" className="form-control" placeholder="End Day" required onChange={this.handleInputChange} />
+                  <input type="date" name="t_end" id="inputEndDate" className="form-control" placeholder="End Day" min={this.state.minEnd} required onChange={this.handleInputChange} />
                   <label htmlFor="inputEndDate">Día de finalización</label>
                 </div>
                 <button className="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Crear</button>

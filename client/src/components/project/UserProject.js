@@ -94,6 +94,8 @@ export default class UserProject extends Component {
           <div className="row">
           <ul className="" >
             <li className="">Wallet: {this.props.project.wallet}</li>
+            <li className="">Precio de cada token: {this.props.project.tokensValue} ether</li>
+
           </ul>
           </div>
           <div className="row">
@@ -128,6 +130,7 @@ export default class UserProject extends Component {
           <div className="row">
           <ul className="" >
             <li className="">Wallet: {this.props.project.wallet}</li>
+            <li className="">Precio de cada token: {this.props.project.tokensValue} ether</li>
             <li className="">Max ether: {this.props.project.cap}</li>
           </ul>
           </div>
@@ -162,6 +165,7 @@ export default class UserProject extends Component {
           <div className="row">
           <ul className="" >
             <li className="">Wallet: {this.props.project.wallet}</li>
+            <li className="">Precio de cada token: {this.props.project.tokensValue} ether</li>
             <li className="">Max ether: {this.props.project.cap}</li>
             <li className="">Fecha de comienzo: {this.state.startDate}</li>
             <li className="">Fecha de finalización: {this.state.endDate}</li>
@@ -198,6 +202,7 @@ export default class UserProject extends Component {
           <div className="row">
           <ul className="" >
             <li className="">Wallet: {this.props.project.wallet}</li>
+            <li className="">Precio de cada token: {this.props.project.tokensValue} ether</li>
             <li className="">Number of tokens: {this.props.project.cap}</li>
             <li className="">Fecha de comienzo: {this.props.project.t_init}</li>
             <li className="">Fecha de finalización: {this.props.project.t_end}</li>

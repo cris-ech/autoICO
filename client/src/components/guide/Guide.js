@@ -32,6 +32,10 @@ export default class Register extends Component {
                         <div className='col-2-6'>3</div>
                         <p className='col'>Una vez completado el proceso de creación solo tienes que ir a "mis proyectos" y seleccionar desplegar para que tu ICO sea lanzada en la blockchain.</p>
                     </div>
+                    <div class="row works-step">
+                        <div className='col-2-6'>4</div>
+                        <p className='col'>Con el proyecto ya desplegado este quedara listado en la pestaña "ICO's" donde se realizar la compra de tokens.</p>
+                    </div>
                 </div>
 
             </div>

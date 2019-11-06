@@ -29,7 +29,7 @@ export default class Home extends Component {
                 <h2 className="display-4">¿Como funciona?</h2>
                 <p>¿Tienes una idea relacionada con Blockchain?¿Quieres lanzar una ICO para financiarte? AutoICO
                   hara el camino mucho mas facil para ti, registrate y crea un nuevo proyecto, lanza tu ICO sin 
-                  escribir una sola linea de codigo, dejanos eso a nosotros. Ponemos a tu disposicion varias opciones 
+                  escribir una sola linea de codigo. Ponemos a tu disposicion varias opciones 
                   en la creacion de tu ICO para que se adapte a tus necesidades. Simple, rapido, economico ¿Estas listo?
                 </p>
               </div>

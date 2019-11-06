@@ -75,6 +75,13 @@ export default class UserProject extends Component {
           <h3>{this.props.project.name}</h3>
           <p>{this.props.project.description}</p>
           <div className="row">
+          <h5>Detalles</h5>
+          </div>
+          <div className="row">
+          <ul className="" >
+            <li className="">Dirección del token: {this.state.tokenAddress}</li>
+            <li className="">Precio de cada token: {this.props.project.tokensValue} ether</li>
+          </ul>
           </div>
           <div className="row">
           <form className="form" onSubmit={this.onSubmit}>
@@ -110,6 +117,7 @@ export default class UserProject extends Component {
           </div>
           <div className="row">
           <ul className="" >
+            <li className="">Dirección del token: {this.state.tokenAddress}</li>
             <li className="">Hard cap: {this.props.project.cap}</li>
             <li className="">Precio de cada token: {this.props.project.tokensValue} ether</li>
             <li className="">Número maximo de tokens: {this.props.project.nTokens}</li>
@@ -147,6 +155,7 @@ export default class UserProject extends Component {
           </div>
           <div className="row">
           <ul className="" >
+            <li className="">Dirección del token: {this.state.tokenAddress}</li>
             <li className="">Hard cap: {this.props.project.cap}</li>
             <li className="">Precio de cada token: {this.props.project.tokensValue} ether</li>
             <li className="">Número maximo de tokens: {this.props.project.nTokens}</li>
@@ -186,6 +195,7 @@ export default class UserProject extends Component {
           </div>
           <div className="row">
           <ul className="" >
+            <li className="">Dirección del token: {this.state.tokenAddress}</li>
             <li className="">Hard cap: {this.props.project.cap}</li>
             <li className="">Precio de cada token: {this.props.project.tokensValue} ether</li>
             <li className="">Número maximo de tokens: {this.props.project.nTokens}</li>
