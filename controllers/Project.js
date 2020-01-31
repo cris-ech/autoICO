@@ -266,7 +266,7 @@ function replaceMigrations (userName,project){
 }
 
 
-function updateAddress (userName,project){
+function updateProject (userName,project){
 
   const folderToken = "./projects/" + userName + "/" + project.name + '/build/contracts/' + 'IcoToken.json'  ; 
   const folderIco = "./projects/" + userName + "/" + project.name + '/build/contracts/' + 'IcoCrowdsale.json' ;
@@ -278,7 +278,11 @@ function updateAddress (userName,project){
   const ico = JSON.parse(icoFile);
   
   const query = { _id: project._id};
-  const update = { tokenAddress: token.networks[5777].address, icoAddress: ico.networks[5777].address, state: "deployed"};
+  const update = { tokenAddress: token.networks[5777].address, 
+    icoAddress: ico.networks[5777].address,
+    tokenABI: token["abi"],
+    icoABI: ico["abi"], 
+    state: "deployed"};
   //const update = { tokenAddress: token.networks[4].address, icoAddress: ico.networks[4].address, state: "deployed"};
 
   Project.updateOne(query, update).then((rawResponse) => {
@@ -332,7 +336,7 @@ exports.DeployProject = function (req,res) {
           }
           console.log(`stdout: ${stdout}`);
           console.log(`stderr: ${stderr}`);
-          const addresses = updateAddress(decoded.name,req.body);
+          const addresses = updateProject(decoded.name,req.body);
           res.status(200).json(addresses);
     
           });

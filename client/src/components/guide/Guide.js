@@ -12,7 +12,7 @@ export default class Register extends Component {
 
   render() {
     return (
-      <div className="section login-container">
+      <div className="section login-container" style={{overflow:"auto"}}>
       <div className="row">
         <div className="col-lg-5 col-xl-5 col-md-6 col-sm-7 col-xs-8 mx-auto">
           <div className="card card-signin flex-row my-5">

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './projects.css';
+import icoImage from './prueba.jpg';
 
 
 export default class UserProject extends Component {
@@ -82,7 +83,7 @@ export default class UserProject extends Component {
       <div className="row">
         <div className="col-md-5">
           <a href="#">
-            <img className="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/500x300" alt="" />
+            <img className="img-fluid rounded mb-3 mb-md-0" src={icoImage} alt="" />
           </a>
         </div>
         <div className="col-md-7">
@@ -118,7 +119,7 @@ export default class UserProject extends Component {
       <div className="row">
         <div className="col-md-5">
           <a href="#">
-            <img className="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/500x300" alt="" />
+            <img className="img-fluid rounded mb-3 mb-md-0" src={icoImage} alt="" />
           </a>
         </div>
         <div className="col-md-7">
@@ -153,7 +154,7 @@ export default class UserProject extends Component {
       <div className="row">
         <div className="col-md-5">
           <a href="#">
-            <img className="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/500x300" alt="" />
+            <img className="img-fluid rounded mb-3 mb-md-0" src={icoImage} alt="" />
           </a>
         </div>
         <div className="col-md-7">
@@ -190,7 +191,7 @@ export default class UserProject extends Component {
       <div className="row">
         <div className="col-md-5">
           <a href="#">
-            <img className="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/500x300" alt="" />
+            <img className="img-fluid rounded mb-3 mb-md-0" src={icoImage} alt="" />
           </a>
         </div>
         <div className="col-md-7">
@@ -227,7 +228,7 @@ export default class UserProject extends Component {
     <div className="row">
       <div className="col-md-5">
         <a href="#">
-          <img className="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/500x300" alt="" />
+          <img className="img-fluid rounded mb-3 mb-md-0" src={icoImage} alt="" />
         </a>
       </div>
       <div className="col-md-7">

@@ -53,6 +53,16 @@ const ProjectSchema = new Schema({
     default: null,
     required: false
   },
+  tokenABI: {
+    type: Object,
+    default: null,
+    required: false
+  },
+  icoABI: {
+    type: Object,
+    default: null,
+    required: false
+  },
   tokensValue: {
     type: Number,
     default: null,
