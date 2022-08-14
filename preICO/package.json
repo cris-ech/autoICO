@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@openzeppelin/contracts": "^2.3.0",
+    "@openzeppelin/contracts": "^4.7.2",
     "dotenv": "^8.2.0",
     "solc": "^0.5.11",
     "truffle": "^5.0.5",
